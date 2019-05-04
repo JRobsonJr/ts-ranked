@@ -1,0 +1,17 @@
+.card-header {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.list-group-item {
+    padding: .75rem !important;
+}
+
+.selected-track, .selected-track:focus {
+    background: #ddf0f2;
+}
+
+.collapse-btn {
+    background: #fae3d9;
+    color: black;
+}
