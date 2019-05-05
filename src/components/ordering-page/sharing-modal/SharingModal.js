@@ -13,7 +13,6 @@ class SharingModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tracks: sessionStorage.getItem('tracks').split(','),
             contributed:
                 sessionStorage.getItem('contributed') === 'true' ? true : false,
         };
@@ -22,13 +21,15 @@ class SharingModal extends Component {
     saveAsPng = async () => {
         const node = document.getElementById('share');
         const blob = await domtoimage.toBlob(node, {
-            style: { height: '100%' }, bgcolor: '#f5676c'
+            style: { height: '100%' },
+            bgcolor: '#f5676c',
         });
         saveAs(blob, 'tsranked-top13.png');
     };
 
     submitRanking = () => {
-        const { contributed, tracks } = this.state;
+        const { contributed } = this.state;
+        const { tracks } = this.props;
 
         if (!contributed) {
             this.setState({ contributed: true });
@@ -42,7 +43,8 @@ class SharingModal extends Component {
     };
 
     render(props) {
-        const { contributed, tracks } = this.state;
+        const { contributed } = this.state;
+        const { tracks } = this.props;
 
         return (
             <div

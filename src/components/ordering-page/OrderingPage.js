@@ -32,7 +32,7 @@ class OrderingPage extends Component {
                     <h2>Order your 13 favorite Taylor Swift songs.</h2>
                     <p>Use the up and down arrows to move tracks around.</p>
                     <TrackList tracks={tracks} handleClick={this.handleClick} />
-                    <SharingModal />
+                    <SharingModal tracks={tracks} />
                     <OrderingPageFooter />
                 </div>
             </div>
