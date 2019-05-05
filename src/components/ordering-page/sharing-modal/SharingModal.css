@@ -8,6 +8,8 @@
 }
 
 .modal-share-body {
+    background: #f5676c;
+    background: -webkit-linear-gradient(to bottom, #f5676c, #fce3ac, #d7fee7);
     background: linear-gradient(to bottom, #f5676c, #fce3ac, #d7fee7);
     padding: 2rem;
     height: 1000px;
