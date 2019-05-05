@@ -1,17 +1,20 @@
 {
-  "name": "taylor-swift-ranker",
+  "name": "taylor-swift-ranked",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
     "dom-to-image": "^2.6.0",
     "file-saver": "^2.0.1",
+    "gh-pages": "^2.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -40,5 +43,6 @@
     "trailingComma": "es5",
     "tabWidth": 4,
     "singleQuote": true
-  }
+  },
+  "homepage": "https://jrobsonjr.github.io/ts-ranked"
 }
