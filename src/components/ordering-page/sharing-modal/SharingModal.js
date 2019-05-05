@@ -22,7 +22,7 @@ class SharingModal extends Component {
     saveAsPng = async () => {
         const node = document.getElementById('share');
         const blob = await domtoimage.toBlob(node, {
-            style: { height: '100%' },
+            style: { height: '100%' }, bgcolor: '#f5676c'
         });
         saveAs(blob, 'tsranked-top13.png');
     };
