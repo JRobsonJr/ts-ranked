@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/ts-ranked/static/css/main.e9fa2fbe.chunk.css",
-    "main.js": "/ts-ranked/static/js/main.f678d7b0.chunk.js",
-    "main.js.map": "/ts-ranked/static/js/main.f678d7b0.chunk.js.map",
+    "main.js": "/ts-ranked/static/js/main.c8534456.chunk.js",
+    "main.js.map": "/ts-ranked/static/js/main.c8534456.chunk.js.map",
     "runtime~main.js": "/ts-ranked/static/js/runtime~main.b75a0fe1.js",
     "runtime~main.js.map": "/ts-ranked/static/js/runtime~main.b75a0fe1.js.map",
     "static/js/2.bcdaaca9.chunk.js": "/ts-ranked/static/js/2.bcdaaca9.chunk.js",
     "static/js/2.bcdaaca9.chunk.js.map": "/ts-ranked/static/js/2.bcdaaca9.chunk.js.map",
     "index.html": "/ts-ranked/index.html",
-    "precache-manifest.4456f73a4e80a6aae0dcd7eff0e0da7c.js": "/ts-ranked/precache-manifest.4456f73a4e80a6aae0dcd7eff0e0da7c.js",
+    "precache-manifest.45835fa07c49f9436dfa8649b872d2f4.js": "/ts-ranked/precache-manifest.45835fa07c49f9436dfa8649b872d2f4.js",
     "service-worker.js": "/ts-ranked/service-worker.js",
     "static/css/main.e9fa2fbe.chunk.css.map": "/ts-ranked/static/css/main.e9fa2fbe.chunk.css.map",
     "static/media/index.css": "/ts-ranked/static/media/noah-regularitalic-webfont.c6f22776.woff",
