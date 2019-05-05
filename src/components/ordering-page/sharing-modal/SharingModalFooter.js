@@ -53,7 +53,7 @@ const buildTwitterUrl = favoriteTrack => {
         } is my favorite! Share your own Top 13 TS songs using TS Ranked:`,
         hashtags: 'TaylorSwiftRanked',
         via: 'SoftCircuits',
-        url: 'https://jrobsonjr.github.io/taylorswiftranked',
+        url: 'https://jrobsonjr.github.io/ts-ranked',
     };
     return `https://twitter.com/intent/tweet?${encodeQueryParams(params)}`;
 };

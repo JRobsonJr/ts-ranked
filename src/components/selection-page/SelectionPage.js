@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import AlbumAccordion from './AlbumAccordion';
 
@@ -58,9 +59,9 @@ const Footer = ({ tracksLength }) => (
                     </h6>
                 </div>
                 <div className="col-auto align-self-center">
-                    <a className="btn btn-footer" href="/order">
+                    <Link className="btn btn-footer" to="/order">
                         PROCEED!
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>
