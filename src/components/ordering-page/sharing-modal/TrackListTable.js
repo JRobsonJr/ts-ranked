@@ -10,7 +10,7 @@ const TrackListTable = ({ tracks }) => {
     ));
 
     return (
-        <table className="table table-striped table-tracks shadow-lg">
+        <table className="table table-striped table-borderless table-tracks shadow-lg">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -24,13 +24,14 @@ const TrackListTable = ({ tracks }) => {
 
 const TrackListTableRow = ({ id, index }) => {
     const { track, album } = getTrack(id);
+    const albumName = track.albumName ? track.albumName : album.name;
     return (
         <tr>
             <th scope="row" width="1%">
                 {index + 1}
             </th>
-            <td>
-                {track.name}, <i>{album.name}</i>
+            <td className="text-truncate">
+                {track.name}, <i>{albumName}</i>
             </td>
         </tr>
     );

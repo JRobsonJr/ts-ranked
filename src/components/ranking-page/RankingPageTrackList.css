@@ -6,6 +6,6 @@
     vertical-align: middle;
 }
 
-.table-striped tbody tr:nth-of-type(odd) {
+.table-ranking tbody tr:nth-of-type(odd) {
     background-color: #fbbcbe50;
 }

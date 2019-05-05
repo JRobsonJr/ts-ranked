@@ -13,7 +13,7 @@ const RankingPageTrackList = ({ tracks }) => {
     ));
 
     return (
-        <table className="table table-bordered table-striped">
+        <table className="table table-bordered table-ranking">
             <thead>
                 <tr>
                     <th scope="col">#</th>
