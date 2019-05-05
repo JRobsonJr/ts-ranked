@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-
-import TrackListTable from './TrackListTable';
-
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
+
+import { addTrackScore } from '../../../api/requests';
+
+import TrackListTable from './TrackListTable';
+import SharingModalFooter from './SharingModalFooter';
 
 import './SharingModal.css';
 
@@ -12,6 +14,8 @@ class SharingModal extends Component {
         super(props);
         this.state = {
             tracks: sessionStorage.getItem('tracks').split(','),
+            contributed:
+                sessionStorage.getItem('contributed') === 'true' ? true : false,
         };
     }
 
@@ -20,15 +24,29 @@ class SharingModal extends Component {
         const blob = await domtoimage.toBlob(node, {
             style: { height: '100%' },
         });
-        saveAs(blob, 'ts-top13.png');
+        saveAs(blob, 'tsranked-top13.png');
+    };
+
+    submitRanking = () => {
+        const { contributed, tracks } = this.state;
+
+        if (!contributed) {
+            this.setState({ contributed: true });
+            sessionStorage.setItem('contributed', 'true');
+
+            return tracks.reduce(async (previousPromise, current, index) => {
+                await previousPromise;
+                return addTrackScore(current, 13 - index);
+            }, Promise.resolve());
+        }
     };
 
     render(props) {
-        const { tracks } = this.state;
+        const { contributed, tracks } = this.state;
 
         return (
             <div
-                className="modal fade noah"
+                className="modal fade"
                 id="modal-share"
                 tabIndex="-1"
                 role="dialog"
@@ -41,7 +59,12 @@ class SharingModal extends Component {
                     <div className="modal-content">
                         <SharingModalHeader />
                         <SharingModalBody tracks={tracks} />
-                        <SharingModalFooter saveAsPng={this.saveAsPng} />
+                        <SharingModalFooter
+                            contributed={contributed}
+                            favoriteTrackId={tracks[0]}
+                            saveAsPng={this.saveAsPng}
+                            submitRanking={this.submitRanking}
+                        />
                     </div>
                 </div>
             </div>
@@ -66,18 +89,6 @@ const SharingModalBody = ({ tracks }) => (
     <div className="modal-body modal-share-body" id="share">
         <h1 className="text-center">TOP 13 TS SONGS</h1>
         <TrackListTable tracks={tracks} />
-    </div>
-);
-
-const SharingModalFooter = ({ saveAsPng }) => (
-    <div className="modal-footer">
-        <button
-            type="button"
-            className="btn btn-outline-primary"
-            onClick={() => saveAsPng()}
-        >
-            Save as PNG
-        </button>
     </div>
 );
 
