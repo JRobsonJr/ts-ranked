@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import TrackList from './TrackList';
 
 import './OrderingPage.css';
+import SharingModal from './sharing-modal/SharingModal';
 
 class OrderingPage extends Component {
     constructor(props) {
@@ -31,10 +32,28 @@ class OrderingPage extends Component {
                     <h2>Order your 13 favorite Taylor Swift songs.</h2>
                     <p>Use the up and down arrows to move tracks around.</p>
                     <TrackList tracks={tracks} handleClick={this.handleClick} />
+                    <SharingModal />
+                    <OrderingPageFooter />
                 </div>
             </div>
         );
     }
 }
+
+const OrderingPageFooter = ({ tracksLength }) => (
+    <div className="footer fixed-bottom shadow-lg">
+        <div className="container">
+            <div className="p-3 text-center">
+                <button
+                    className="btn btn-footer"
+                    data-toggle="modal"
+                    data-target="#modal-share"
+                >
+                    CONFIRM ORDER
+                </button>
+            </div>
+        </div>
+    </div>
+);
 
 export default OrderingPage;
