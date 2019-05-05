@@ -74,17 +74,6 @@ export const albums = [
                 id: '1yDJcXc549N6AabNBzFAku',
                 bonus: true,
             },
-            {
-                name: 'Beautiful Eyes',
-                id: '1a5kAD0K7zijLlZokbRDe2',
-                bonus: true,
-            },
-            {
-                name: 'I Heart?',
-                id: '2HxTSD72RBQR31HtyX72sf',
-                year: 2008,
-                bonus: true,
-            },
         ],
     },
     {
@@ -245,6 +234,7 @@ export const albums = [
                 year: 2007,
                 imageUrl:
                     'https://i.scdn.co/image/c03d3a1abcd2547897a426f7dd655cc4749a0dc8',
+                albumName: 'The Taylor Swift Holiday Collection',
             },
             {
                 name: 'Christmas Must Be Something More',
@@ -252,34 +242,23 @@ export const albums = [
                 year: 2007,
                 imageUrl:
                     'https://i.scdn.co/image/c03d3a1abcd2547897a426f7dd655cc4749a0dc8',
+                albumName: 'The Taylor Swift Holiday Collection',
             },
             {
-                name: 'Today Was A Fairytale',
-                id: '4pFvEWbjBpPUdYRQly0THs',
-                year: 2010,
+                name: 'Beautiful Eyes',
+                id: '1a5kAD0K7zijLlZokbRDe2',
+                year: 2008,
                 imageUrl:
-                    'https://i.scdn.co/image/cfa533ec0c3649d6d039d6050d2093143d4b6107',
+                    'https://i.pinimg.com/originals/05/62/a4/0562a4b806318c9c78e8abd8311fd6eb.jpg',
+                albumName: 'Beautiful Eyes (EP)',
             },
             {
-                name: 'Ronan',
-                id: '0Nw8hv79MLJa1yjtsEgz08',
-                year: 2012,
+                name: 'I Heart?',
+                id: '2HxTSD72RBQR31HtyX72sf',
+                year: 2008,
                 imageUrl:
-                    'https://i.scdn.co/image/e0daec2787938bb9661c360a134e448abea68065',
-            },
-            {
-                name: 'Sweeter than Fiction',
-                year: 2013,
-                id: '1SpG93jxIWE2NpUstwxBPI',
-                imageUrl:
-                    'https://i.scdn.co/image/ed255bcc3259aa779085c30e15915bf9224f1f2c',
-            },
-            {
-                name: "I Don't Wanna Live Forever",
-                id: '6yIdwnpDHufLWgQcveTPMk',
-                year: 2016,
-                imageUrl:
-                    'https://i.scdn.co/image/20e8df3dca5d3074d9935cdb43dc1da8491e29a3',
+                    'https://i.pinimg.com/originals/05/62/a4/0562a4b806318c9c78e8abd8311fd6eb.jpg',
+                albumName: 'Beautiful Eyes (EP)',
             },
             {
                 name: 'Crazier',
@@ -287,13 +266,24 @@ export const albums = [
                 year: 2009,
                 imageUrl:
                     'https://i.scdn.co/image/684d788c7be095c1cc5e5b2778cf8682c21dbaba',
+                albumName: 'Hannah Montana: The Movie OST',
+            },
+            {
+                name: 'Today Was A Fairytale',
+                id: '4pFvEWbjBpPUdYRQly0THs',
+                year: 2010,
+                imageUrl:
+                    'https://i.scdn.co/image/cfa533ec0c3649d6d039d6050d2093143d4b6107',
+                albumName: "Valentine's Day OST",
             },
             {
                 name: 'Safe & Sound',
                 id: '0z9UVN8VBHJ9HdfYsOuuNf',
-                year: 2012,
+                year: 2011,
                 imageUrl:
                     'https://i.scdn.co/image/af6f16d9d92c8e8ae0cb5816bf5a4c3688862e0b',
+                albumName:
+                    'The Hunger Games: Songs from District 12 and Beyond',
             },
             {
                 name: 'Eyes Open',
@@ -301,6 +291,40 @@ export const albums = [
                 year: 2012,
                 imageUrl:
                     'https://i.scdn.co/image/af6f16d9d92c8e8ae0cb5816bf5a4c3688862e0b',
+                albumName:
+                    'The Hunger Games: Songs from District 12 and Beyond',
+            },
+            {
+                name: 'Ronan',
+                id: '0Nw8hv79MLJa1yjtsEgz08',
+                year: 2012,
+                imageUrl:
+                    'https://i.scdn.co/image/e0daec2787938bb9661c360a134e448abea68065',
+                albumName: 'Ronan (Single)',
+            },
+            {
+                name: 'Sweeter than Fiction',
+                year: 2013,
+                id: '1SpG93jxIWE2NpUstwxBPI',
+                imageUrl:
+                    'https://i.scdn.co/image/ed255bcc3259aa779085c30e15915bf9224f1f2c',
+                albumName: 'One Chance OST',
+            },
+            {
+                name: "Highway Don't Care",
+                id: '60hGQrn24APqEFSLObLeDc',
+                year: 2013,
+                imageUrl:
+                    'https://i.scdn.co/image/a5b76b198e71c7069befa79488a9a9103403d824',
+                albumName: 'Two Lanes of Freedom',
+            },
+            {
+                name: "I Don't Wanna Live Forever",
+                id: '6yIdwnpDHufLWgQcveTPMk',
+                year: 2016,
+                imageUrl:
+                    'https://i.scdn.co/image/20e8df3dca5d3074d9935cdb43dc1da8491e29a3',
+                albumName: 'Fifty Shades Darker OST',
             },
         ],
     },
