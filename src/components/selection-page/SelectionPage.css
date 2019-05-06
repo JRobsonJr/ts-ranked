@@ -3,3 +3,7 @@
     margin-bottom: 5rem;
     background-color: white;
 }
+
+.selected-tracks {
+    padding: .375rem .75rem;
+}

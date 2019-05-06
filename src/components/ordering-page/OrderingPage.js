@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 import TrackList from './TrackList';
+import SharingModal from './sharing-modal/SharingModal';
 
 import './OrderingPage.css';
-import SharingModal from './sharing-modal/SharingModal';
 
 class OrderingPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tracks: sessionStorage.getItem('tracks').split(','),
+            tracks: sessionStorage.getItem('tracks')
+                ? sessionStorage.getItem('tracks').split(',')
+                : [],
         };
     }
 
@@ -26,7 +29,7 @@ class OrderingPage extends Component {
     render(props) {
         const { tracks } = this.state;
 
-        return (
+        return tracks.length === 13 ? (
             <div className="mx-1">
                 <div className="container ordering-page shadow p-4 rounded-lg">
                     <h2>Order your 13 favorite Taylor Swift songs.</h2>
@@ -36,6 +39,8 @@ class OrderingPage extends Component {
                     <OrderingPageFooter />
                 </div>
             </div>
+        ) : (
+            <Redirect to="/select" />
         );
     }
 }
