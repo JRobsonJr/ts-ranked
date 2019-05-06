@@ -6,16 +6,16 @@ import './HomePage.css';
 const HomePage = () => (
     <div className="mx-1">
         <MainSection />
+        <StartSection />
         <AboutSection />
         <RestrictionsSection />
         <ContactSection />
-        <StartSection />
     </div>
 );
 
 const MainSection = () => (
     <div className="container container-home text-center">
-        <h1 className="display-2">Taylor Swift Ranker</h1>
+        <h1 className="display-2">Taylor Swift Ranked</h1>
         <h3>
             Singer-songwriter Taylor Swift has released six studio albums and a
             handful of singles over the course of her career.
@@ -43,9 +43,8 @@ const AboutSection = () => (
                     <b>#TaylorSwiftRanked</b> so that I can check your ranking!
                 </h5>
                 <h5>
-                    If you'd like to contribute with the overall ranking, after
-                    generating your list, you'll be given the option to{' '}
-                    <i>"Submit your ranking"</i>. Let's see how your favorite
+                    After you confirm your ranking, your data will be sent to 
+                    an overall ranking made with all submissions. Let's see how your favorite
                     tracks compare to other people's favorites!
                 </h5>
             </div>

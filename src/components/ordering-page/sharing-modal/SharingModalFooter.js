@@ -3,18 +3,12 @@ import React from 'react';
 import { getTrack } from '../../../api/albums';
 
 const SharingModalFooter = ({
-    contributed,
     favoriteTrackId,
     saveAsPng,
-    submitRanking,
 }) => (
     <div className="modal-footer">
         <SaveAsPngButton saveAsPng={saveAsPng} />
         <ShareToTwitterButton favoriteTrackId={favoriteTrackId} />
-        <SubmitRankingButton
-            contributed={contributed}
-            submitRanking={submitRanking}
-        />
     </div>
 );
 
@@ -34,16 +28,6 @@ const ShareToTwitterButton = ({ favoriteTrackId }) => (
     >
         Share to Twitter
     </a>
-);
-
-const SubmitRankingButton = ({ contributed, submitRanking }) => (
-    <button
-        className="btn btn-outline-primary"
-        onClick={() => submitRanking()}
-        disabled={contributed}
-    >
-        {contributed ? 'Thank you!' : 'Submit your ranking'}
-    </button>
 );
 
 const buildTwitterUrl = favoriteTrack => {

@@ -11,8 +11,8 @@ class SelectionPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tracks: sessionStorage.getItem('tracks')
-                ? sessionStorage.getItem('tracks').split(',')
+            tracks: localStorage.getItem('tracks')
+                ? localStorage.getItem('tracks').split(',')
                 : [],
         };
     }
@@ -25,7 +25,7 @@ class SelectionPage extends Component {
             } else {
                 tracks.push(id);
             }
-            sessionStorage.setItem('tracks', tracks.join(','));
+            localStorage.setItem('tracks', tracks.join(','));
             return { tracks };
         });
     };
