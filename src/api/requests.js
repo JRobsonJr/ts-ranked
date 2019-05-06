@@ -19,3 +19,6 @@ export const addTrack = trackId =>
     axiosInstance
         .post('/tracks', { id: trackId })
         .then(response => response.data);
+
+export const incrementUses = () =>
+    axiosInstance.put('/users').then(response => response.data);
