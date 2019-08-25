@@ -1,9 +1,26 @@
 .selection-page {
-    margin-top: 5rem;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 8rem;
+    padding-left: 8rem;
+}
+
+@media (max-width: 991.98px) {
+    .selection-page {
+        padding-right: .1rem;
+        padding-left: .1rem;
+    }
+}
+
+.selection-page-section {
     margin-bottom: 5rem;
     background-color: white;
 }
 
 .selected-tracks {
     padding: .375rem .75rem;
+}
+
+.selection-page-title {
+    font-size: 3rem;
 }

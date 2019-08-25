@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
-import AlbumAccordion from './AlbumAccordion';
-
-import { albums } from '../../api/albums';
+import SelectedTracksSection from './SelectedTracksSection';
+import SelectionPageFooter from './SelectionPageFooter';
+import TrackSelectionSection from './TrackSelectionSection';
 
 import './SelectionPage.css';
 
@@ -34,42 +33,28 @@ class SelectionPage extends Component {
         const { tracks } = this.state;
 
         return (
-            <div className="container selection-page shadow p-4 rounded-lg">
-                <h2>Select your 13 favorite Taylor Swift songs.</h2>
-                <p>
-                    Don't bother selecting in order; you'll organize them in the
-                    next step.
-                </p>
-                <AlbumAccordion
-                    albums={albums}
-                    handleClick={this.handleClick}
-                    selectedTracks={tracks}
-                />
-                <Footer tracksLength={tracks.length} />
+            <div className="selection-page row">
+                <div className="col-12">
+                    <h1 className="selection-page-title text-center px-2 py-4">
+                        Select your 13 favorite songs
+                    </h1>
+                </div>
+                <div className="col-lg-7">
+                    <TrackSelectionSection
+                        tracks={tracks}
+                        handleClick={this.handleClick}
+                    />
+                </div>
+                <div className="col-lg-5">
+                    <SelectedTracksSection
+                        tracks={tracks}
+                        handleClick={this.handleClick}
+                    />
+                </div>
+                <SelectionPageFooter tracksLength={tracks.length} />
             </div>
         );
     }
 }
-
-const Footer = ({ tracksLength }) => (
-    <div className="footer fixed-bottom shadow-lg">
-        <div className="container">
-            <div className="row p-3 justify-content-between text-center">
-                <div className="col-lg-auto align-self-center">
-                    <h6 className="mb-0 selected-tracks">
-                        Selected {tracksLength}/13 track(s)
-                    </h6>
-                </div>
-                <div className="col-lg-auto align-self-center">
-                    {tracksLength === 13 ? (
-                        <Link className="btn btn-footer" to="/order">
-                            PROCEED!
-                        </Link>
-                    ) : null}
-                </div>
-            </div>
-        </div>
-    </div>
-);
 
 export default SelectionPage;
