@@ -8,9 +8,9 @@
 }
 
 .modal-share-body {
-    background: #f5676c;
-    background: -webkit-linear-gradient(to bottom, #f5676c, #fce3ac, #d7fee7);
-    background: linear-gradient(to bottom, #f5676c, #fce3ac, #d7fee7);
+    background: #fdecfa;
+    background: -webkit-linear-gradient(to right, #fdecfa, #fdecfa, #fdecfa, #eaf0fa, #eaf0fa, #eaf0fa, #fef0d8);
+    background: linear-gradient(to right, #fdecfa, #fdecfa, #fdecfa, #eaf0fa, #eaf0fa,  #eaf0fa, #fef0d8);
     padding: 2rem;
     height: 1000px;
     width: 1000px;
@@ -21,5 +21,4 @@
 .modal-share-body > h1 {
     font-size: 5rem;
     font-weight: bold;
-    color: #f8f9fa;
 }

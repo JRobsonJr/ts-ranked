@@ -28,13 +28,13 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: #e2ffee;
-    background: -webkit-linear-gradient(to right, #fbbcbe, #fdebc2, #e2ffee);
-    background: linear-gradient(to right, #fbbcbe, #fdebc2, #e2ffee);
+    background: #fdecfa;
+    background: -webkit-linear-gradient(to right, #fdecfa, #fdecfa, #fdecfa, #eaf0fa, #eaf0fa, #eaf0fa, #fef0d8);
+    background: linear-gradient(to right, #fdecfa, #fdecfa, #fdecfa, #eaf0fa, #eaf0fa,  #eaf0fa, #fef0d8);
 }
 
 .footer {
-    background-color: #61c0bf;
+    background-color: #97b8e7;
     color: white;
 }
 
