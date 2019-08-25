@@ -3,34 +3,43 @@ import React from 'react';
 import { getTrack } from '../../api/albums';
 
 const TrackList = ({ tracks, handleClick }) => {
-    const trackListItems = tracks.map((track, index) => (
-        <TrackListItem
+    const tableRows = tracks.map((track, index) => (
+        <TrackListTableRow
             handleClick={handleClick}
             trackId={track}
             index={index}
         />
     ));
 
-    return <ul className="list-group">{trackListItems}</ul>;
+    return (
+        <table className="table table-borderless table-alternate-colors">
+            <tbody>{tableRows}</tbody>
+        </table>
+    );
 };
 
-const TrackListItem = ({ trackId, index, handleClick }) => {
+const TrackListTableRow = ({ trackId, index, handleClick }) => {
     const { track, album } = getTrack(trackId);
     return (
-        <li className="list-group-item d-flex justify-content-between align-items-center">
-            <div>
+        <tr>
+            <th scope="row" width="1%">
+                <h4 className="mb-0">{index + 1}</h4>
+            </th>
+            <td width="1%">
                 <img
                     src={album.imageUrl || track.imageUrl || ''}
-                    alt="album"
-                    className="album mr-2"
+                    alt={album.name}
+                    className="album-image"
                 />
-                {track.name}
-            </div>
-            <OrderControlButtonGroup
-                trackIndex={index}
-                handleClick={handleClick}
-            />
-        </li>
+            </td>
+            <td>{track.name}</td>
+            <td width="1%">
+                <OrderControlButtonGroup
+                    trackIndex={index}
+                    handleClick={handleClick}
+                />
+            </td>
+        </tr>
     );
 };
 
@@ -63,7 +72,7 @@ const OrderControlButton = ({
         disabled={disabled}
         onClick={() => handleClick(trackIndex, direction)}
     >
-        <i className={`fas fa-long-arrow-alt-${direction}`} />
+        <i className={`fas fa-chevron-${direction}`} />
     </button>
 );
 
