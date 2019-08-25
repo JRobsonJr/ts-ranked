@@ -17,8 +17,8 @@ const MainSection = () => (
     <div className="container container-home text-center">
         <h1 className="display-2">Taylor Swift Ranked</h1>
         <h3>
-            Singer-songwriter Taylor Swift has released six studio albums and a
-            handful of singles over the course of her career.
+            Singer-songwriter Taylor Swift has released seven studio albums and
+            a handful of singles throughout her career.
         </h3>
         <h5>
             Can you choose your favorite <b>13</b> songs out of her discography?
@@ -36,16 +36,17 @@ const AboutSection = () => (
                     reorder them from favorite to least favorite. In the end,
                     you'll be able to generate a cool image you can use to share
                     on social media. Here's an example of how it should look
-                    like: my own ranking!
+                    like: my ranking!
                 </h4>
                 <h5>
-                    If you share this on Twitter, use the hashtag{' '}
-                    <b>#TaylorSwiftRanked</b> so that I can check your ranking!
+                    If you share yours on Twitter, Tumblr or other social media,
+                    use the hashtag <b>#TaylorSwiftRanked</b> so that I can
+                    check it out!
                 </h5>
                 <h5>
-                    After you confirm your ranking, your data will be sent to 
-                    an overall ranking made with all submissions. Let's see how your favorite
-                    tracks compare to other people's favorites!
+                    After you confirm your ranking, your data will be sent to an
+                    overall ranking made with all submissions. Let's see how
+                    your favorite tracks compare to other people's favorites!
                 </h5>
             </div>
             <div className="col-lg-6 align-self-center">
@@ -67,9 +68,9 @@ const RestrictionsSection = () => (
         <h5>
             Note that only tracks that were officially released by Taylor are
             listed. Another little restriction was to only include songs in
-            which she was credited as a main artist. The last one is that all of
-            her officially released covers are not listed (except for{' '}
-            <i>Untouchable</i>, since she earned a writing credit for it).
+            which she was credited as one of the main artists. The last one is
+            that all of her officially released covers are not listed (except
+            for <i>Untouchable</i> since she earned a writing credit for it).
         </h5>
     </section>
 );
@@ -80,7 +81,7 @@ const ContactSection = () => (
         <div className="row">
             <div className="col-lg-7">
                 <h5>
-                    As a fellow Swiftie, find me at <b>Twitter</b>. Hey, let's
+                    As a fellow Swiftie, find me on <b>Twitter</b>. Hey, let's
                     be friends!
                 </h5>
                 <h5>
