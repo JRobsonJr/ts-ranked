@@ -10,7 +10,7 @@ const TrackListTable = ({ tracks }) => {
     ));
 
     return (
-        <table className="table table-striped table-borderless table-tracks shadow-lg">
+        <table className="table table-striped table-borderless table-tracks shadow-lg table-responsive">
             <thead>
                 <tr>
                     <th scope="col">#</th>

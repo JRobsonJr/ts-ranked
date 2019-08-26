@@ -2,16 +2,13 @@
     overflow-x: auto !important;
 }
 
-.modal-share-dialog {
-    width: 1000px;
-    max-width: 1000px;
-}
-
 .modal-share-body {
     background: #fdecfa;
     background: -webkit-linear-gradient(to right, #fdecfa, #fdecfa, #fdecfa, #eaf0fa, #eaf0fa, #eaf0fa, #fef0d8);
     background: linear-gradient(to right, #fdecfa, #fdecfa, #fdecfa, #eaf0fa, #eaf0fa,  #eaf0fa, #fef0d8);
     padding: 2rem;
+    position: absolute;
+    left: -9999px;
     height: 1000px;
     width: 1000px;
     font-family: noah;

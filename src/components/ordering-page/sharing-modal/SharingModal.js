@@ -11,7 +11,7 @@ class SharingModal extends Component {
     saveAsPng = async () => {
         const node = document.getElementById('share');
         const blob = await domtoimage.toBlob(node, {
-            style: { height: '100%' },
+            style: { height: '100%', position: 'relative', left: '0' },
             bgcolor: '#f5676c',
         });
         saveAs(blob, 'tsranked-top13.png');
@@ -35,6 +35,7 @@ class SharingModal extends Component {
                     <div className="modal-content">
                         <SharingModalHeader />
                         <SharingModalBody tracks={tracks} />
+                        <TrackListTable tracks={tracks} />
                         <SharingModalFooter
                             favoriteTrackId={tracks[0]}
                             saveAsPng={this.saveAsPng}
