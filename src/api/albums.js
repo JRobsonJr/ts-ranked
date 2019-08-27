@@ -44,7 +44,7 @@ export const albums = [
                 spotifyId: '0YgHuReCSPwTXYny7isLja',
                 bonus: true,
             },
-            { name: "I'd Lie", bonus: true },
+            { name: "I'd Lie", spotifyId: 'unavailable', bonus: true },
         ],
     },
     {
@@ -431,6 +431,17 @@ export const getTrack = spotifyId => {
     for (const album of albums) {
         for (const track of album.tracks) {
             if (track.spotifyId === spotifyId) {
+                return { album, track };
+            }
+        }
+    }
+    return new Error('Album not found');
+};
+
+export const getTrackByShortenedId = shortenedId => {
+    for (const album of albums) {
+        for (const track of album.tracks) {
+            if (track.spotifyId.slice(1, 3) === shortenedId) {
                 return { album, track };
             }
         }
