@@ -52,7 +52,14 @@ class SharingPage extends Component {
                         tracks={localStorage.getItem('tracks').split(',')}
                     />
                     <TrackListTable tracks={tracks} />
-                    <SharingPageFooter favoriteTrackId={tracks[0]} />
+                    <SharingPageFooter
+                        token={
+                            this.props.location.state
+                                ? this.props.location.state.token
+                                : ''
+                        }
+                        favoriteTrackId={tracks[0]}
+                    />
                 </div>
             </div>
         ) : (

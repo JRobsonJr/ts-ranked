@@ -2,16 +2,29 @@ import React, { Component } from 'react';
 
 import { getTrack } from '../../api/albums';
 import { saveRankingAsPng, postRankingToImgur } from '../../api/images';
+import { init, getCurrentUserProfile } from 'spotify-web-sdk';
+import SpotifyConnectButton from '../spotify/SpotifyConnectButton';
+import SpotifyGeneratePlaylistButton from '../spotify/SpotifyGeneratePlaylistButton';
 
 class SharingPageFooter extends Component {
     constructor(props) {
         super(props);
         this.state = {
             url: '',
+            spotifyConnect: props.token,
+            spotifyUserId: '',
         };
     }
 
     componentDidMount() {
+        const { spotifyConnect } = this.state;
+
+        if (spotifyConnect) {
+            init({ token: localStorage.getItem('token') });
+            getCurrentUserProfile().then(user => {
+                this.setState({ spotifyUserId: user.id });
+            });
+        }
         postRankingToImgur(document.getElementById('share')).then(url =>
             this.setState({ url })
         );
@@ -19,37 +32,53 @@ class SharingPageFooter extends Component {
 
     render() {
         const { track } = getTrack(this.props.favoriteTrackId);
+        const { spotifyConnect, spotifyUserId } = this.state;
+        const tracks = localStorage.getItem('tracks').split(',');
+        const ids = tracks.map(t => t.slice(1, 3)).join('');
+
         return (
             <div className="sharing-page-footer">
                 <SaveAsPngButton />
                 {!this.state.url ? (
-                    <button class="btn btn-primary" type="button" disabled>
-                        <span
-                            class="spinner-border spinner-border-sm"
-                            role="status"
-                            aria-hidden="true"
-                        />{' '}
-                        Loading...
-                    </button>
+                    <LoadingButton />
                 ) : (
                     <ShareToTumblrButton
                         favoriteTrack={track.name}
                         imageUrl={this.state.url}
                     />
                 )}
-                <ShareToTwitterButton favoriteTrack={track.name} />
+                <ShareToTwitterButton ids={ids} favoriteTrack={track.name} />
+                {spotifyConnect ? (
+                    <SpotifyGeneratePlaylistButton
+                        userId={spotifyUserId}
+                        ids={localStorage.getItem('tracks').split(',')}
+                    />
+                ) : (
+                    <SpotifyConnectButton />
+                )}
             </div>
         );
     }
 }
 
-const ShareToTwitterButton = ({ favoriteTrack }) => {
+const LoadingButton = () => (
+    <button class="btn btn-primary" type="button" disabled>
+        <span
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+        />{' '}
+        Loading...
+    </button>
+);
+
+const ShareToTwitterButton = ({ ids, favoriteTrack }) => {
     const twitterBaseUrl = 'https://twitter.com/intent/tweet';
     const twitterParams = {
         text: `Taylor Swift has released over 100 songs throughout her career, but ${favoriteTrack} is my favorite! Share your own Top 13 Taylor songs using TS Ranked:`,
         hashtags: 'TaylorSwiftRanked',
         via: 'SoftCircuits',
-        url: 'https://jrobsonjr.github.io/ts-ranked',
+        url: `https://jrobsonjr.github.io/ts-ranked/results?tracks=${ids}`,
     };
     return (
         <ShareToSocialMediaButton
@@ -96,7 +125,7 @@ const ShareToSocialMediaButton = ({ baseUrl, params, name }) => (
         target="_blank"
         rel="noopener noreferrer"
     >
-        Share to {name}
+        <i className={`fab fa-${name.toLowerCase()}`} /> Share to {name}
     </a>
 );
 
