@@ -6,6 +6,7 @@ import HomePage from '../home/HomePage';
 import SelectionPage from '../selection-page/SelectionPage';
 import OrderingPage from '../ordering-page/OrderingPage';
 import RankingPage from '../ranking-page/RankingPage';
+import SharingPage from '../sharing-page/SharingPage';
 
 const App = () => (
     <>
@@ -15,6 +16,7 @@ const App = () => (
             <Route exact path="/select" component={SelectionPage} />
             <Route exact path="/order" component={OrderingPage} />
             <Route exact path="/ranking" component={RankingPage} />
+            <Route exact path="/share" component={SharingPage} />
         </Switch>
     </>
 );

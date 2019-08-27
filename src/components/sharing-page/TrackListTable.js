@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getTrack } from '../../../api/albums';
+import { getTrack } from '../../api/albums';
 
 import './TrackListTable.css';
 

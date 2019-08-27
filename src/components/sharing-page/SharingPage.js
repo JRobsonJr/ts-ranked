@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import TrackList from './TrackList';
+import TrackListTable from './TrackListTable';
+import SharingPageFooter from './SharingPageFooter';
 
 import { addTrackScore, incrementUses } from '../../api/requests';
 
-import './OrderingPage.css';
+import './SharingPage.css';
 
-class OrderingPage extends Component {
+class SharingPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            contributed:
-                localStorage.getItem('contributed') === 'true' ? true : false,
             tracks: localStorage.getItem('tracks')
                 ? localStorage.getItem('tracks').split(',')
                 : [],
@@ -49,10 +48,11 @@ class OrderingPage extends Component {
         return tracks.length === 13 ? (
             <div className="mx-1">
                 <div className="container ordering-page shadow p-4 rounded-lg">
-                    <h2>Order your 13 favorite Taylor Swift songs.</h2>
-                    <p>Use the up and down arrows to move tracks around.</p>
-                    <TrackList tracks={tracks} handleClick={this.handleClick} />
-                    <OrderingPageFooter submitRanking={this.submitRanking} />
+                    <SharingPageRanking
+                        tracks={localStorage.getItem('tracks').split(',')}
+                    />
+                    <TrackListTable tracks={tracks} />
+                    <SharingPageFooter favoriteTrackId={tracks[0]} />
                 </div>
             </div>
         ) : (
@@ -61,20 +61,11 @@ class OrderingPage extends Component {
     }
 }
 
-const OrderingPageFooter = ({ submitRanking }) => (
-    <div className="footer fixed-bottom shadow-lg">
-        <div className="container">
-            <div className="p-3 text-center">
-                <a
-                    href="/share"
-                    className="btn btn-footer"
-                    onClick={() => submitRanking()}
-                >
-                    CONFIRM ORDER
-                </a>
-            </div>
-        </div>
+const SharingPageRanking = ({ tracks }) => (
+    <div className="sharing-page-ranking" id="share">
+        <h1 className="text-center">My Top 13 TS songs</h1>
+        <TrackListTable tracks={tracks} />
     </div>
 );
 
-export default OrderingPage;
+export default SharingPage;
