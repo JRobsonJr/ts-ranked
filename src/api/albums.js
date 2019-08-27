@@ -448,3 +448,7 @@ export const getTrackByShortenedId = shortenedId => {
     }
     return new Error('Album not found');
 };
+
+export const getFullTrackId = shortenedId => {
+    return getTrackByShortenedId(shortenedId).track.spotifyId;
+};
