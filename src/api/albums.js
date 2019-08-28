@@ -279,7 +279,7 @@ export const albums = [
         year: 2019,
         spotifyId: '0WGakTFs8cnggcYsHjIhgy',
         imageUrl:
-            'https://i.scdn.co/image/1f2784adc8a50ba0064ca4fdfdb08b289235ab21',
+            'https://i.scdn.co/image/e30b81b756002dffe808888a4b67461e15e67681',
         tracks: [
             {
                 name: 'I Forgot That You Existed',
