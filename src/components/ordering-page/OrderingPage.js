@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import TrackList from './TrackList';
+import TrackList from '../common/ReorderTracksTable';
 
 import { addTrackScore, incrementUses } from '../../api/requests';
 

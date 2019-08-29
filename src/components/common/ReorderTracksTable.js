@@ -8,6 +8,7 @@ const TrackList = ({ tracks, handleClick }) => {
             handleClick={handleClick}
             trackId={track}
             index={index}
+            tracksLength={tracks.length}
         />
     ));
 
@@ -18,7 +19,7 @@ const TrackList = ({ tracks, handleClick }) => {
     );
 };
 
-const TrackListTableRow = ({ trackId, index, handleClick }) => {
+const TrackListTableRow = ({ trackId, index, handleClick, tracksLength }) => {
     const { track, album } = getTrack(trackId);
     return (
         <tr>
@@ -37,13 +38,14 @@ const TrackListTableRow = ({ trackId, index, handleClick }) => {
                 <OrderControlButtonGroup
                     trackIndex={index}
                     handleClick={handleClick}
+                    tracksLength={tracksLength}
                 />
             </td>
         </tr>
     );
 };
 
-const OrderControlButtonGroup = ({ trackIndex, handleClick }) => (
+const OrderControlButtonGroup = ({ trackIndex, handleClick, tracksLength }) => (
     <div className="btn-group" role="group">
         <OrderControlButton
             trackIndex={trackIndex}
@@ -55,7 +57,7 @@ const OrderControlButtonGroup = ({ trackIndex, handleClick }) => (
             trackIndex={trackIndex}
             handleClick={handleClick}
             direction="down"
-            disabled={trackIndex === 12}
+            disabled={trackIndex === tracksLength - 1}
         />
     </div>
 );

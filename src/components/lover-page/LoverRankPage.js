@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import TrackList from '../ordering-page/TrackList';
+import ReorderTracksTable from '../common/ReorderTracksTable';
 import { albums } from '../../api/albums';
 
 class LoverRankPage extends Component {
@@ -11,15 +11,24 @@ class LoverRankPage extends Component {
         };
     };
 
+    handleClick = (index, direction) => {
+        const { tracks } = this.state;
+        const auxIndex = direction === 'up' ? index - 1 : index + 1;
+        const aux = tracks[auxIndex];
+        tracks[auxIndex] = tracks[index];
+        tracks[index] = aux;
+        this.setState({ tracks });
+    };
+
     render() {
         const { tracks } = this.state;
 
         return (
             <div className="mx-1">
                 <div className="container ordering-page shadow p-4 rounded-lg">
-                    <h2>Order your 13 favorite Taylor Swift songs.</h2>
+                    <h2>Reorder the Lover tracks around to form your ranking.</h2>
                     <p>Use the up and down arrows to move tracks around.</p>
-                    <TrackList tracks={tracks} handleClick={this.handleClick} />
+                    <ReorderTracksTable tracks={tracks} handleClick={this.handleClick} />
                     <OrderingPageFooter />
                 </div>
             </div>

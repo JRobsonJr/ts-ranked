@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import queryString from 'querystring';
 
-import TrackListTable from '../sharing-page/TrackListTable';
+import TrackListTable from '../common/TrackListTable';
 
 import { getFullTrackId } from '../../api/albums';
 
