@@ -2,10 +2,11 @@ import React from 'react';
 
 import { getTrack } from '../../api/albums';
 
-const TrackList = ({ tracks, handleClick }) => {
+const ReorderTracksTable = ({ tracks, removeTrack, moveTrack }) => {
     const tableRows = tracks.map((track, index) => (
         <TrackListTableRow
-            handleClick={handleClick}
+            removeTrack={removeTrack}
+            moveTrack={moveTrack}
             trackId={track}
             index={index}
             tracksLength={tracks.length}
@@ -13,13 +14,19 @@ const TrackList = ({ tracks, handleClick }) => {
     ));
 
     return (
-        <table className="table table-borderless table-alternate-colors">
+        <table className="table table-borderless table-alternate-colors table-responsive">
             <tbody>{tableRows}</tbody>
         </table>
     );
 };
 
-const TrackListTableRow = ({ trackId, index, handleClick, tracksLength }) => {
+const TrackListTableRow = ({
+    trackId,
+    index,
+    removeTrack,
+    moveTrack,
+    tracksLength,
+}) => {
     const { track, album } = getTrack(trackId);
     return (
         <tr>
@@ -37,7 +44,8 @@ const TrackListTableRow = ({ trackId, index, handleClick, tracksLength }) => {
             <td width="1%">
                 <OrderControlButtonGroup
                     trackIndex={index}
-                    handleClick={handleClick}
+                    moveTrack={moveTrack}
+                    removeTrack={removeTrack}
                     tracksLength={tracksLength}
                 />
             </td>
@@ -45,37 +53,44 @@ const TrackListTableRow = ({ trackId, index, handleClick, tracksLength }) => {
     );
 };
 
-const OrderControlButtonGroup = ({ trackIndex, handleClick, tracksLength }) => (
+const OrderControlButtonGroup = ({
+    trackIndex,
+    removeTrack,
+    moveTrack,
+    tracksLength,
+}) => (
     <div className="btn-group" role="group">
         <OrderControlButton
             trackIndex={trackIndex}
-            handleClick={handleClick}
+            moveTrack={moveTrack}
             direction="up"
             disabled={trackIndex === 0}
         />
         <OrderControlButton
             trackIndex={trackIndex}
-            handleClick={handleClick}
+            moveTrack={moveTrack}
             direction="down"
             disabled={trackIndex === tracksLength - 1}
         />
+        <button
+            onClick={() => removeTrack(trackIndex)}
+            className="btn btn-block"
+            type="button"
+        >
+            <i className="fas fa-times" />
+        </button>
     </div>
 );
 
-const OrderControlButton = ({
-    trackIndex,
-    handleClick,
-    direction,
-    disabled,
-}) => (
+const OrderControlButton = ({ trackIndex, moveTrack, direction, disabled }) => (
     <button
         className="btn text-left"
         type="button"
         disabled={disabled}
-        onClick={() => handleClick(trackIndex, direction)}
+        onClick={() => moveTrack(trackIndex, direction)}
     >
         <i className={`fas fa-chevron-${direction}`} />
     </button>
 );
 
-export default TrackList;
+export default ReorderTracksTable;

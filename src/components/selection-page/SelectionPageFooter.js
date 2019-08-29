@@ -10,13 +10,13 @@ const SelectionPageFooter = ({ tracksLength }) => (
                         Selected {tracksLength}/13 track(s)
                     </h6>
                 </div>
-                <div className="col-lg-auto align-self-center">
-                    {tracksLength === 13 ? (
-                        <Link className="btn btn-footer" to="/order">
+                {tracksLength === 13 ? (
+                    <div className="col-lg-auto align-self-center">
+                        <Link className="btn btn-footer" to="/share">
                             PROCEED!
                         </Link>
-                    ) : null}
-                </div>
+                    </div>
+                ) : null}
             </div>
         </div>
     </div>

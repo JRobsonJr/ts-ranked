@@ -1,14 +1,17 @@
 import React from 'react';
 
+import ReorderTracksTable from '../common/ReorderTracksTable';
 import { getTrack } from '../../api/albums';
 
-const SelectedTracksSection = ({ tracks, handleClick }) => (
-    <div className="selection-page-section container shadow p-4 rounded-lg">
+const SelectedTracksSection = ({ tracks, removeTrack, moveTrack }) => (
+    <div className="selection-page-section container shadow p-4 rounded-lg table-ranking">
         <h3>Currently selected tracks</h3>
         {tracks.length > 0 ? (
             <p>
-                Click the <i className="fas fa-times" /> icon to remove a track
-                from your selection.
+                Use the <i className="fas fa-chevron-up" /> and{' '}
+                <i className="fas fa-chevron-down" /> buttons to reorder your
+                selected tracks and click the <i className="fas fa-times" />{' '}
+                icon to remove a track from your selection.
             </p>
         ) : (
             <p>
@@ -16,7 +19,11 @@ const SelectedTracksSection = ({ tracks, handleClick }) => (
                 Go, go, go!
             </p>
         )}
-        <TrackList tracks={tracks} handleClick={handleClick} />
+        <ReorderTracksTable
+            tracks={tracks}
+            removeTrack={removeTrack}
+            moveTrack={moveTrack}
+        />
     </div>
 );
 

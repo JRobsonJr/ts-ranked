@@ -4,6 +4,8 @@ import SelectedTracksSection from './SelectedTracksSection';
 import SelectionPageFooter from './SelectionPageFooter';
 import TrackSelectionSection from './TrackSelectionSection';
 
+import { addTrackScore, incrementUses } from '../../api/requests';
+
 import './SelectionPage.css';
 
 class SelectionPage extends Component {
@@ -15,6 +17,30 @@ class SelectionPage extends Component {
                 : [],
         };
     }
+
+    moveTrack = (index, direction) => {
+        const { tracks } = this.state;
+        const auxIndex = direction === 'up' ? index - 1 : index + 1;
+        const aux = tracks[auxIndex];
+        tracks[auxIndex] = tracks[index];
+        tracks[index] = aux;
+        localStorage.setItem('tracks', tracks.join(','));
+        this.setState({ tracks });
+    };
+
+    submitRanking = async () => {
+        const { contributed, tracks } = this.state;
+
+        if (!contributed) {
+            this.setState({ contributed: true });
+            localStorage.setItem('contributed', 'true');
+            await incrementUses();
+            return tracks.reduce(async (previousPromise, current, index) => {
+                await previousPromise;
+                return addTrackScore(current, 13 - index);
+            }, Promise.resolve());
+        }
+    };
 
     handleClick = id => {
         this.setState(prevState => {
@@ -29,7 +55,16 @@ class SelectionPage extends Component {
         });
     };
 
-    render(props) {
+    removeTrack = index => {
+        this.setState(prevState => {
+            let tracks = prevState.tracks;
+            tracks.splice(index, 1);
+            localStorage.setItem('tracks', tracks.join(','));
+            return { tracks };
+        });
+    };
+
+    render() {
         const { tracks } = this.state;
 
         return (
@@ -39,16 +74,17 @@ class SelectionPage extends Component {
                         Select your 13 favorite songs
                     </h1>
                 </div>
-                <div className="col-lg-7">
+                <div className="col-lg-6">
                     <TrackSelectionSection
                         tracks={tracks}
                         handleClick={this.handleClick}
                     />
                 </div>
-                <div className="col-lg-5">
+                <div className="col-lg-6">
                     <SelectedTracksSection
                         tracks={tracks}
-                        handleClick={this.handleClick}
+                        removeTrack={this.removeTrack}
+                        moveTrack={this.moveTrack}
                     />
                 </div>
                 <SelectionPageFooter tracksLength={tracks.length} />
