@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { init, createPlaylist, addTracksToPlaylist } from 'spotify-web-sdk';
+import { createPlaylist, addTracksToPlaylist } from 'spotify-web-sdk';
 
 const SpotifyGeneratePlaylistButton = ({ userId, ids }) => {
-    init({ token: localStorage.getItem('token') });
     const generatePlaylist = async ids => {
         const newPlaylist = await createPlaylist(userId, 'TS Ranked', {
             description: 'My top 13 Taylor Swift tracks.',

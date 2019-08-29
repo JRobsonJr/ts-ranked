@@ -11,10 +11,6 @@ class SpotifyAuth extends Component {
         };
     }
 
-    componentDidMount() {
-        localStorage.setItem('token', this.state.token);
-    }
-
     render() {
         const redirectParams = {
             pathname: '/share',
