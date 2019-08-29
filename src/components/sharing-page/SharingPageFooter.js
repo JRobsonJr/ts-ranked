@@ -1,54 +1,34 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { getTrack } from '../../api/albums';
-import { saveRankingAsPng, postRankingToImgur } from '../../api/images';
-import { init, getCurrentUserProfile } from 'spotify-web-sdk';
+import { saveRankingAsPng } from '../../api/images';
 import SpotifyConnectButton from '../spotify/SpotifyConnectButton';
 import SpotifyGeneratePlaylistButton from '../spotify/SpotifyGeneratePlaylistButton';
 
-class SharingPageFooter extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            url: '',
-            spotifyConnect: props.token,
-            spotifyUserId: '',
-        };
-    }
+const SharingPageFooter = ({
+    favoriteTrackId,
+    spotifyToken,
+    spotifyUserId,
+    imgurUrl,
+}) => {
+    const { track } = getTrack(favoriteTrackId);
+    const tracks = localStorage.getItem('tracks').split(',');
+    const ids = tracks.map(t => t.slice(1, 3)).join('');
 
-    componentDidMount() {
-        const { spotifyConnect } = this.state;
-
-        if (spotifyConnect) {
-            init({ token: localStorage.getItem('token') });
-            getCurrentUserProfile().then(user => {
-                this.setState({ spotifyUserId: user.id });
-            });
-        }
-        postRankingToImgur(document.getElementById('share')).then(url =>
-            this.setState({ url })
-        );
-    }
-
-    render() {
-        const { track } = getTrack(this.props.favoriteTrackId);
-        const { spotifyConnect, spotifyUserId } = this.state;
-        const tracks = localStorage.getItem('tracks').split(',');
-        const ids = tracks.map(t => t.slice(1, 3)).join('');
-
-        return (
-            <div className="sharing-page-footer">
+    return (
+        <div className="sharing-page-footer">
+            <div className="btn-group">
                 <SaveAsPngButton />
-                {!this.state.url ? (
+                {!imgurUrl ? (
                     <LoadingButton />
                 ) : (
                     <ShareToTumblrButton
                         favoriteTrack={track.name}
-                        imageUrl={this.state.url}
+                        imageUrl={imgurUrl}
                     />
                 )}
                 <ShareToTwitterButton ids={ids} favoriteTrack={track.name} />
-                {spotifyConnect ? (
+                {spotifyToken ? (
                     <SpotifyGeneratePlaylistButton
                         userId={spotifyUserId}
                         ids={localStorage.getItem('tracks').split(',')}
@@ -57,14 +37,14 @@ class SharingPageFooter extends Component {
                     <SpotifyConnectButton />
                 )}
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
 const LoadingButton = () => (
-    <button class="btn btn-primary" type="button" disabled>
+    <button className="btn btn-primary" type="button" disabled>
         <span
-            class="spinner-border spinner-border-sm"
+            className="spinner-border spinner-border-sm"
             role="status"
             aria-hidden="true"
         />{' '}

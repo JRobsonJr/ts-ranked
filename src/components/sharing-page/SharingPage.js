@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import TrackListTable from './TrackListTable';
+import TrackListTable from '../common/TrackListTable';
 import SharingPageFooter from './SharingPageFooter';
 
-import { addTrackScore, incrementUses } from '../../api/requests';
+import { init, getCurrentUserProfile } from 'spotify-web-sdk';
+import { postRankingToImgur } from '../../api/images';
 
 import './SharingPage.css';
 
@@ -15,35 +16,29 @@ class SharingPage extends Component {
             tracks: localStorage.getItem('tracks')
                 ? localStorage.getItem('tracks').split(',')
                 : [],
+            spotifyToken: this.props.location.state
+                ? this.props.location.state.token
+                : '',
+            imgurUrl: '',
         };
     }
 
-    handleClick = (index, direction) => {
-        const { tracks } = this.state;
-        const auxIndex = direction === 'up' ? index - 1 : index + 1;
-        const aux = tracks[auxIndex];
-        tracks[auxIndex] = tracks[index];
-        tracks[index] = aux;
-        localStorage.setItem('tracks', tracks.join(','));
-        this.setState({ tracks });
-    };
+    componentDidMount() {
+        const { spotifyToken } = this.state;
 
-    submitRanking = async () => {
-        const { contributed, tracks } = this.state;
-
-        if (!contributed) {
-            this.setState({ contributed: true });
-            localStorage.setItem('contributed', 'true');
-            await incrementUses();
-            return tracks.reduce(async (previousPromise, current, index) => {
-                await previousPromise;
-                return addTrackScore(current, 13 - index);
-            }, Promise.resolve());
+        if (spotifyToken) {
+            init({ token: spotifyToken });
+            getCurrentUserProfile().then(user => {
+                this.setState({ spotifyUserId: user.id });
+            });
         }
-    };
+        postRankingToImgur(document.getElementById('share')).then(imgurUrl =>
+            this.setState({ imgurUrl })
+        );
+    }
 
-    render(props) {
-        const { tracks } = this.state;
+    render() {
+        const { tracks, spotifyToken, imgurUrl } = this.state;
 
         return tracks.length === 13 ? (
             <div className="mx-1">
@@ -53,11 +48,9 @@ class SharingPage extends Component {
                     />
                     <TrackListTable tracks={tracks} />
                     <SharingPageFooter
-                        token={
-                            this.props.location.state
-                                ? this.props.location.state.token
-                                : ''
-                        }
+                        spotifyToken={spotifyToken}
+                        spotifyUserId={this.state.spotifyUserId}
+                        imgurUrl={imgurUrl}
                         favoriteTrackId={tracks[0]}
                     />
                 </div>
