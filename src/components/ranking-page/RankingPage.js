@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { getTrackStats } from '../../api/requests';
 
 import RankingPageTrackList from './RankingPageTrackList';
+import PageWrapper from '../common/PageWrapper';
 
 import './RankingPage.css';
 
@@ -20,17 +21,15 @@ class RankingPage extends Component {
         });
     }
 
-    render(props) {
+    render() {
         const { tracks } = this.state;
 
         return (
-            <div className="mx-1">
-                <div className="container ranking-page shadow p-4 rounded-lg">
-                    <h2>Overall Ranking</h2>
-                    <p>Based on all user rankings.</p>
-                    <RankingPageTrackList tracks={tracks} />
-                </div>
-            </div>
+            <PageWrapper>
+                <h2>Overall Ranking</h2>
+                <p>Based on all user rankings.</p>
+                <RankingPageTrackList tracks={tracks} />
+            </PageWrapper>
         );
     }
 }

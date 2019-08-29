@@ -4,6 +4,7 @@ import queryString from 'querystring';
 import TrackListTable from '../common/TrackListTable';
 
 import { getFullTrackId } from '../../api/albums';
+import PageWrapper from '../common/PageWrapper';
 
 class ResultsPage extends Component {
     constructor(props) {
@@ -19,24 +20,22 @@ class ResultsPage extends Component {
 
     render() {
         return (
-            <div className="mx-1">
-                <div className="container ordering-page shadow p-4 rounded-lg">
-                    <h1 className="text-center py-2">
-                        These are my Top 13 Taylor Swift tracks!
-                    </h1>
-                    <div className="row justify-content-center">
-                        <div className="col-lg-8 col-md-10 col-sm-12">
-                            <TrackListTable tracks={this.state.tracks} />
-                            <a
-                                className="btn btn-block btn-outline-primary"
-                                href="/"
-                            >
-                                Generate your own Top 13 with TS Ranked
-                            </a>
-                        </div>
+            <PageWrapper>
+                <h1 className="text-center py-2">
+                    These are my Top 13 Taylor Swift tracks!
+                </h1>
+                <div className="row justify-content-center">
+                    <div className="col-lg-8 col-md-10 col-sm-12">
+                        <TrackListTable tracks={this.state.tracks} />
+                        <a
+                            className="btn btn-block btn-outline-primary"
+                            href="/"
+                        >
+                            Generate your own Top 13 with TS Ranked
+                        </a>
                     </div>
                 </div>
-            </div>
+            </PageWrapper>
         );
     }
 }

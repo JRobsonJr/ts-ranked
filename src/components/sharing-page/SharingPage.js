@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { init, getCurrentUserProfile } from 'spotify-web-sdk';
 
 import TrackListTable from '../common/TrackListTable';
+import PageWrapper from '../common/PageWrapper';
 import SharingPageFooter from './SharingPageFooter';
 
-import { init, getCurrentUserProfile } from 'spotify-web-sdk';
 import { postRankingToImgur } from '../../api/images';
 
 import './SharingPage.css';
@@ -41,20 +42,18 @@ class SharingPage extends Component {
         const { tracks, spotifyToken, imgurUrl } = this.state;
 
         return tracks.length === 13 ? (
-            <div className="mx-1">
-                <div className="container ordering-page shadow p-4 rounded-lg">
-                    <SharingPageRanking
-                        tracks={localStorage.getItem('tracks').split(',')}
-                    />
-                    <TrackListTable tracks={tracks} />
-                    <SharingPageFooter
-                        spotifyToken={spotifyToken}
-                        spotifyUserId={this.state.spotifyUserId}
-                        imgurUrl={imgurUrl}
-                        favoriteTrackId={tracks[0]}
-                    />
-                </div>
-            </div>
+            <PageWrapper>
+                <SharingPageRanking
+                    tracks={localStorage.getItem('tracks').split(',')}
+                />
+                <TrackListTable tracks={tracks} />
+                <SharingPageFooter
+                    spotifyToken={spotifyToken}
+                    spotifyUserId={this.state.spotifyUserId}
+                    imgurUrl={imgurUrl}
+                    favoriteTrackId={tracks[0]}
+                />
+            </PageWrapper>
         ) : (
             <Redirect to="/select" />
         );

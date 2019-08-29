@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import ReorderTracksTable from '../common/ReorderTracksTable';
+import PageWrapper from '../common/PageWrapper';
+
 import { albums } from '../../api/albums';
 
 class LoverRankPage extends Component {
@@ -9,7 +11,7 @@ class LoverRankPage extends Component {
         this.state = {
             tracks: albums[6].tracks.map(t => t.spotifyId),
         };
-    };
+    }
 
     handleClick = (index, direction) => {
         const { tracks } = this.state;
@@ -24,14 +26,15 @@ class LoverRankPage extends Component {
         const { tracks } = this.state;
 
         return (
-            <div className="mx-1">
-                <div className="container ordering-page shadow p-4 rounded-lg">
-                    <h2>Reorder the Lover tracks around to form your ranking.</h2>
-                    <p>Use the up and down arrows to move tracks around.</p>
-                    <ReorderTracksTable tracks={tracks} handleClick={this.handleClick} />
-                    <OrderingPageFooter />
-                </div>
-            </div>
+            <PageWrapper>
+                <h2>Reorder the Lover tracks around to form your ranking.</h2>
+                <p>Use the up and down arrows to move tracks around.</p>
+                <ReorderTracksTable
+                    tracks={tracks}
+                    handleClick={this.handleClick}
+                />
+                <OrderingPageFooter />
+            </PageWrapper>
         );
     }
 }
