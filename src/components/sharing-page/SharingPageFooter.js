@@ -19,14 +19,10 @@ const SharingPageFooter = ({
         <div className="sharing-page-footer">
             <div className="btn-group">
                 <SaveAsPngButton />
-                {!imgurUrl ? (
-                    <LoadingButton />
-                ) : (
-                    <ShareToTumblrButton
-                        favoriteTrack={track.name}
-                        imageUrl={imgurUrl}
-                    />
-                )}
+                <ShareToTumblrButton
+                    imageUrl={imgurUrl}
+                    favoriteTrack={track.name}
+                />
                 <ShareToTwitterButton ids={ids} favoriteTrack={track.name} />
                 {spotifyToken ? (
                     <SpotifyGeneratePlaylistButton
@@ -79,13 +75,17 @@ const ShareToTumblrButton = ({ favoriteTrack, imageUrl }) => {
         caption: `Taylor Swift has released over 100 songs over the course of her career, but ${favoriteTrack} is my favorite! Share your own Top 13 Taylor songs using TS Ranked.`,
     };
 
-    return (
-        <ShareToSocialMediaButton
-            baseUrl={tumblrBaseUrl}
-            params={tumblrParams}
-            name="Tumblr"
-        />
-    );
+    if (imageUrl) {
+        return (
+            <ShareToSocialMediaButton
+                baseUrl={tumblrBaseUrl}
+                params={tumblrParams}
+                name="Tumblr"
+            />
+        );
+    } else {
+        return <LoadingButton />;
+    }
 };
 
 const SaveAsPngButton = () => (

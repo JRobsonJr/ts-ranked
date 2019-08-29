@@ -39,17 +39,15 @@ class SharingPage extends Component {
     }
 
     render() {
-        const { tracks, spotifyToken, imgurUrl } = this.state;
+        const { tracks, spotifyToken, imgurUrl, spotifyUserId } = this.state;
 
         return tracks.length === 13 ? (
             <PageWrapper>
-                <SharingPageRanking
-                    tracks={localStorage.getItem('tracks').split(',')}
-                />
+                <SharingPageRanking tracks={tracks} />
                 <TrackListTable tracks={tracks} />
                 <SharingPageFooter
                     spotifyToken={spotifyToken}
-                    spotifyUserId={this.state.spotifyUserId}
+                    spotifyUserId={spotifyUserId}
                     imgurUrl={imgurUrl}
                     favoriteTrackId={tracks[0]}
                 />
