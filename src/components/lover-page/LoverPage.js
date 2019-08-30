@@ -13,10 +13,12 @@ const MainSection = () => (
     <div className="container container-home text-center">
         <div className="row">
             <div className="col-lg-6">
-                <h1 className="display-2">Lover is out now!</h1>
+                <h1 className="display-2">
+                    <i>Lover</i> is out now!
+                </h1>
                 <h3>
-                    Taylor's seventh album is also her most critically acclaimed
-                    body of work up to date.
+                    Taylor's seventh studio album is also her most critically
+                    acclaimed body of work up to date.
                 </h3>
                 <h5>
                     Can you choose your favorite <b>13</b> songs?
@@ -29,7 +31,7 @@ const MainSection = () => (
                 >
                     <a
                         className="btn btn-lg btn-outline-dark badge-pill"
-                        href="https://taylorswift.lnk.to/loverWe"
+                        href="/lover/rank"
                     >
                         Start now
                     </a>
@@ -46,7 +48,7 @@ const MainSection = () => (
                 <img
                     src="https://i.scdn.co/image/e30b81b756002dffe808888a4b67461e15e67681"
                     className="ranking-example p-4"
-                    alt="My ranking"
+                    alt="Lover"
                 />
             </div>
         </div>

@@ -50,7 +50,12 @@ const AlbumCardCollapseButton = ({ album }) => (
     </button>
 );
 
-const AlbumCardTrackList = ({ album, handleClick, selectedTracks }) => {
+export const AlbumCardTrackList = ({
+    album,
+    handleClick,
+    selectedTracks,
+    collapse = true,
+}) => {
     const trackListItems = album.tracks.map(track => (
         <AlbumCardTrackListItem
             track={track}
@@ -62,7 +67,7 @@ const AlbumCardTrackList = ({ album, handleClick, selectedTracks }) => {
     return (
         <div
             id={`collapse-${album.spotifyId}`}
-            className="collapse"
+            className={collapse ? 'collapse' : ''}
             aria-labelledby={`heading-${album.spotifyId}`}
             data-parent="#album-accordion"
         >

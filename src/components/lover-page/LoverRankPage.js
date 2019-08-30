@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
 
-import ReorderTracksTable from '../common/ReorderTracksTable';
-import PageWrapper from '../common/PageWrapper';
+import SelectedTracksSection from '../selection-page/SelectedTracksSection';
 
 import { albums } from '../../api/albums';
+import { AlbumCardTrackList } from '../selection-page/AlbumAccordion';
 
 class LoverRankPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tracks: albums[6].tracks.map(t => t.spotifyId),
+            tracks: [],
         };
     }
 
-    handleClick = (index, direction) => {
+    handleClick = id => {
+        this.setState(prevState => {
+            let tracks = prevState.tracks;
+            if (tracks.includes(id)) {
+                tracks = tracks.filter(value => value !== id);
+            } else {
+                tracks.push(id);
+            }
+            return { tracks };
+        });
+    };
+
+    moveTrack = (index, direction) => {
         const { tracks } = this.state;
         const auxIndex = direction === 'up' ? index - 1 : index + 1;
         const aux = tracks[auxIndex];
@@ -22,22 +34,60 @@ class LoverRankPage extends Component {
         this.setState({ tracks });
     };
 
+    removeTrack = index => {
+        this.setState(prevState => {
+            let tracks = prevState.tracks;
+            tracks.splice(index, 1);
+            return { tracks };
+        });
+    };
+
     render() {
         const { tracks } = this.state;
 
         return (
-            <PageWrapper>
-                <h2>Reorder the Lover tracks around to form your ranking.</h2>
-                <p>Use the up and down arrows to move tracks around.</p>
-                <ReorderTracksTable
-                    tracks={tracks}
-                    handleClick={this.handleClick}
-                />
-                <OrderingPageFooter />
-            </PageWrapper>
+            <div className="selection-page row">
+                <div className="col-12">
+                    <h1 className="selection-page-title text-center px-2 py-4">
+                        Select your 13 favorite songs
+                    </h1>
+                </div>
+                <div className="col-lg-6">
+                    <LoverRankPageSelectionSection
+                        selectedTracks={tracks}
+                        handleClick={this.handleClick}
+                    />
+                </div>
+                <div className="col-lg-6">
+                    <SelectedTracksSection
+                        tracks={tracks}
+                        removeTrack={this.removeTrack}
+                        moveTrack={this.moveTrack}
+                    />
+                </div>
+                <OrderingPageFooter tracksLength={tracks.length} />
+            </div>
         );
     }
 }
+
+const LoverRankPageSelectionSection = ({ selectedTracks, handleClick }) => (
+    <div className="selection-page-section container shadow p-4 rounded-lg">
+        <div className="card album-card pb-0">
+            <div className="card-header collapse-btn p-3">
+                <b>
+                    <i>Lover</i> tracklist
+                </b>
+            </div>
+        </div>
+        <AlbumCardTrackList
+            collapse={false}
+            album={albums[6]}
+            selectedTracks={selectedTracks}
+            handleClick={handleClick}
+        />
+    </div>
+);
 
 const OrderingPageFooter = ({ submitRanking }) => (
     <div className="footer fixed-bottom shadow-lg">
