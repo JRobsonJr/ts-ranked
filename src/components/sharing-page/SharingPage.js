@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { init, getCurrentUserProfile } from 'spotify-web-sdk';
+import queryString from 'querystring';
 
 import TrackListTable from '../common/TrackListTable';
 import PageWrapper from '../common/PageWrapper';
@@ -13,10 +14,14 @@ import './SharingPage.css';
 class SharingPage extends Component {
     constructor(props) {
         super(props);
+        const albumName = queryString.parse(props.location.search)['?album'];
+        const itemName = albumName ? albumName : 'tracks';
+        const tracks = localStorage.getItem(itemName)
+            ? localStorage.getItem(itemName).split(',')
+            : [];
         this.state = {
-            tracks: localStorage.getItem('tracks')
-                ? localStorage.getItem('tracks').split(',')
-                : [],
+            itemName,
+            tracks,
             spotifyToken: this.props.location.state
                 ? this.props.location.state.token
                 : '',

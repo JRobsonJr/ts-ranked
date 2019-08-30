@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import queryString from 'querystring';
 
 import SelectedTracksSection from './SelectedTracksSection';
 import SelectionPageFooter from './SelectionPageFooter';
@@ -11,10 +12,14 @@ import './SelectionPage.css';
 class SelectionPage extends Component {
     constructor(props) {
         super(props);
+        const albumName = queryString.parse(props.location.search)['?album'];
+        const itemName = albumName ? albumName : 'tracks';
+        const tracks = localStorage.getItem(itemName)
+            ? localStorage.getItem(itemName).split(',')
+            : [];
         this.state = {
-            tracks: localStorage.getItem('tracks')
-                ? localStorage.getItem('tracks').split(',')
-                : [],
+            itemName,
+            tracks,
         };
     }
 
@@ -31,7 +36,7 @@ class SelectionPage extends Component {
             }, Promise.resolve());
         }
     };
-    
+
     handleClick = id => {
         this.setState(prevState => {
             let tracks = prevState.tracks;
@@ -40,18 +45,18 @@ class SelectionPage extends Component {
             } else {
                 tracks.push(id);
             }
-            localStorage.setItem('tracks', tracks.join(','));
+            localStorage.setItem(prevState.itemName, tracks.join(','));
             return { tracks };
         });
     };
 
     moveTrack = (index, direction) => {
-        const { tracks } = this.state;
+        const { tracks, itemName } = this.state;
         const auxIndex = direction === 'up' ? index - 1 : index + 1;
         const aux = tracks[auxIndex];
         tracks[auxIndex] = tracks[index];
         tracks[index] = aux;
-        localStorage.setItem('tracks', tracks.join(','));
+        localStorage.setItem(itemName, tracks.join(','));
         this.setState({ tracks });
     };
 
@@ -59,13 +64,13 @@ class SelectionPage extends Component {
         this.setState(prevState => {
             let tracks = prevState.tracks;
             tracks.splice(index, 1);
-            localStorage.setItem('tracks', tracks.join(','));
+            localStorage.setItem(prevState.itemName, tracks.join(','));
             return { tracks };
         });
     };
 
     render() {
-        const { tracks } = this.state;
+        const { tracks, itemName } = this.state;
 
         return (
             <div className="selection-page row">
@@ -87,7 +92,10 @@ class SelectionPage extends Component {
                         moveTrack={this.moveTrack}
                     />
                 </div>
-                <SelectionPageFooter tracksLength={tracks.length} />
+                <SelectionPageFooter
+                    tracksLength={tracks.length}
+                    albumName={itemName === 'tracks' ? '' : itemName}
+                />
             </div>
         );
     }

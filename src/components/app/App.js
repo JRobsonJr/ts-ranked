@@ -9,7 +9,6 @@ import SharingPage from '../sharing-page/SharingPage';
 import ResultsPage from '../results-page/ResultsPage';
 import SpotifyAuth from '../spotify/SpotifyAuth';
 import LoverPage from '../lover-page/LoverPage';
-import LoverRankPage from '../lover-page/LoverRankPage';
 
 const App = () => (
     <>
@@ -22,7 +21,6 @@ const App = () => (
             <Route exact path="/results" component={ResultsPage} />
             <Route exact path="/spotify-auth" component={SpotifyAuth} />
             <Route exact path="/lover" component={LoverPage} />
-            <Route exact path="/lover/rank" component={LoverRankPage} />
         </Switch>
     </>
 );
