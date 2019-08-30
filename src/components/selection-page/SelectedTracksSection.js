@@ -1,7 +1,6 @@
 import React from 'react';
 
 import ReorderTracksTable from '../common/ReorderTracksTable';
-import { getTrack } from '../../api/albums';
 
 const SelectedTracksSection = ({ tracks, removeTrack, moveTrack }) => (
     <div className="selection-page-section container shadow p-4 rounded-lg table-ranking">
@@ -26,46 +25,5 @@ const SelectedTracksSection = ({ tracks, removeTrack, moveTrack }) => (
         />
     </div>
 );
-
-const TrackList = ({ tracks, handleClick }) => {
-    const tableRows = tracks.map((track, index) => (
-        <TrackListTableRow
-            handleClick={handleClick}
-            trackId={track}
-            index={index}
-        />
-    ));
-
-    return (
-        <table className="table table-borderless table-alternate-colors">
-            <tbody>{tableRows}</tbody>
-        </table>
-    );
-};
-
-const TrackListTableRow = ({ trackId, index, handleClick }) => {
-    const { track, album } = getTrack(trackId);
-    return (
-        <tr>
-            <td width="1%">
-                <img
-                    src={album.imageUrl || track.imageUrl || ''}
-                    alt={album.name}
-                    className="album-image"
-                />
-            </td>
-            <td>{track.name}</td>
-            <td width="1%">
-                <button
-                    onClick={() => handleClick(track.spotifyId)}
-                    className="btn btn-block"
-                    type="button"
-                >
-                    <i className="fas fa-times" />
-                </button>
-            </td>
-        </tr>
-    );
-};
 
 export default SelectedTracksSection;

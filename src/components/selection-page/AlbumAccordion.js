@@ -21,7 +21,7 @@ const AlbumAccordion = ({ albums, handleClick, selectedTracks }) => {
 const AlbumCard = ({ album, handleClick, selectedTracks }) => (
     <div className="card album-card">
         <div
-            className="card-header collapse-btn"
+            className="card-header collapse-btn p-0"
             id={`heading-${album.spotifyId}`}
         >
             <AlbumCardCollapseButton album={album} />
@@ -36,7 +36,7 @@ const AlbumCard = ({ album, handleClick, selectedTracks }) => (
 
 const AlbumCardCollapseButton = ({ album }) => (
     <button
-        className="btn btn-block text-left"
+        className="btn btn-block text-left p-3"
         type="button"
         data-toggle="collapse"
         data-target={`#collapse-${album.spotifyId}`}

@@ -9,12 +9,6 @@
     height: 3rem;
 }
 
-.ordering-page {
-    margin-top: 1.5rem;
-    margin-bottom: 5rem;
-    background-color: white;
-}
-
 @media (max-width: 991.98px) {
     .selection-page {
         padding-right: .1rem;

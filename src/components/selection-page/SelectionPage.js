@@ -18,16 +18,6 @@ class SelectionPage extends Component {
         };
     }
 
-    moveTrack = (index, direction) => {
-        const { tracks } = this.state;
-        const auxIndex = direction === 'up' ? index - 1 : index + 1;
-        const aux = tracks[auxIndex];
-        tracks[auxIndex] = tracks[index];
-        tracks[index] = aux;
-        localStorage.setItem('tracks', tracks.join(','));
-        this.setState({ tracks });
-    };
-
     submitRanking = async () => {
         const { contributed, tracks } = this.state;
 
@@ -41,7 +31,7 @@ class SelectionPage extends Component {
             }, Promise.resolve());
         }
     };
-
+    
     handleClick = id => {
         this.setState(prevState => {
             let tracks = prevState.tracks;
@@ -53,6 +43,16 @@ class SelectionPage extends Component {
             localStorage.setItem('tracks', tracks.join(','));
             return { tracks };
         });
+    };
+
+    moveTrack = (index, direction) => {
+        const { tracks } = this.state;
+        const auxIndex = direction === 'up' ? index - 1 : index + 1;
+        const aux = tracks[auxIndex];
+        tracks[auxIndex] = tracks[index];
+        tracks[index] = aux;
+        localStorage.setItem('tracks', tracks.join(','));
+        this.setState({ tracks });
     };
 
     removeTrack = index => {

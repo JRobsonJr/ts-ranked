@@ -10,10 +10,6 @@ const TrackSelectionSection = ({ tracks, handleClick }) => (
             Click an album title to reveal its tracklist, and then click a song
             title to add it to your 13 favorite songs.
         </p>
-        <p>
-            Don't bother selecting in order; you'll be able to reorganize your
-            ranking in the next step.
-        </p>
         <AlbumAccordion
             albums={albums}
             handleClick={handleClick}
