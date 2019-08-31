@@ -21,7 +21,7 @@ export const saveRankingAsPng = async node => {
 const getRankingBlob = async node => {
     const blob = await domtoimage.toBlob(node, {
         style: { height: '100%', top: '0', position: 'relative', left: '0' },
-        bgcolor: '#f5676c',
+        bgcolor: '#ffffff',
     });
     return blob;
 };

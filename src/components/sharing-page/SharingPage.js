@@ -65,8 +65,11 @@ class SharingPage extends Component {
 
 const SharingPageRanking = ({ tracks }) => (
     <div className="sharing-page-ranking" id="share">
-        <h1 className="text-center">My Top 13 TS songs</h1>
+        <h4 className="text-center pb-2">MY TOP 13 TAYLOR SWIFT SONGS</h4>
         <TrackListTable tracks={tracks} />
+        <p className="text-right">
+            <b>#TSRANKED</b>
+        </p>
     </div>
 );
 

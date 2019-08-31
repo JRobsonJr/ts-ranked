@@ -10,13 +10,7 @@ const TrackListTable = ({ tracks }) => {
     ));
 
     return (
-        <table className="table table-striped table-borderless table-tracks shadow-lg table-responsive">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">TITLE</th>
-                </tr>
-            </thead>
+        <table className="table table-striped table-borderless table-tracks">
             <tbody>{tableRows}</tbody>
         </table>
     );
@@ -28,10 +22,17 @@ const TrackListTableRow = ({ id, index }) => {
     return (
         <tr>
             <th scope="row" width="1%">
-                {index + 1}
+                <b>{index + 1}</b>
             </th>
+            <td className="" width="1%">
+                <img
+                    className="album-image"
+                    src={album.imageUrl ? album.imageUrl : track.imageUrl}
+                    alt={albumName}
+                />
+            </td>
             <td className="text-truncate">
-                {track.name}, <i>{albumName}</i>
+                {track.name}
             </td>
         </tr>
     );

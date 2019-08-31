@@ -1,7 +1,8 @@
 .sharing-page-ranking {
-    background: #fdecfa;
-    background: -webkit-linear-gradient(to right, #fdecfa, #fdecfa, #fdecfa, #eaf0fa, #eaf0fa, #eaf0fa, #fef0d8);
-    background: linear-gradient(to right, #fdecfa, #fdecfa, #fdecfa, #eaf0fa, #eaf0fa,  #eaf0fa, #fef0d8);
+    background-image: url('../../assets/taylor.jpeg');
+    background-size: cover;
+    background-position-x: 50%;
+    background-position-y: 50%;
     padding: 2rem;
     position: absolute;
     left: -9999px;
@@ -11,8 +12,8 @@
     font-size: 1.5rem;
 }
 
-.sharing-page-ranking > h1 {
-    font-size: 5rem;
+.sharing-page-ranking > h4 {
+    font-size: 3rem;
     font-weight: bold;
 }
 
