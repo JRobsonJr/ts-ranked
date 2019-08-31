@@ -3,8 +3,7 @@ export const albums = [
         name: 'Taylor Swift',
         year: 2006,
         spotifyId: '5eyZZoQEFQWRHkV2xgAeBw',
-        imageUrl:
-            'https://i.scdn.co/image/dc71b6f65843f98f89aa212f85f40fdd98d4d6d5',
+        imageUrl: 'assets/covers/taylor_swift.jpeg',
         tracks: [
             { name: 'Tim McGraw', spotifyId: '2Fn01AIMyHbha2ceNQeOqw' },
             { name: 'Picture To Burn', spotifyId: '4BYejINgfZF0qKDMEH2cim' },
@@ -51,8 +50,7 @@ export const albums = [
         name: 'Fearless',
         year: 2008,
         spotifyId: '2gP2LMVcIFgVczSJqn340t',
-        imageUrl:
-            'https://i.scdn.co/image/0378501a57e9a8c3a62651fcff78c21894c108dd',
+        imageUrl: 'assets/covers/fearless.jpeg',
         tracks: [
             { name: 'Fearless', spotifyId: '2okho7vU7Nsq1UZD0kgIMi' },
             { name: 'Fifteen', spotifyId: '5Ora3Ish2A1JN5veGYTxhw' },
@@ -101,8 +99,7 @@ export const albums = [
         name: 'Speak Now',
         year: 2010,
         spotifyId: '6S6JQWzUrJVcJLK4fi74Fw',
-        imageUrl:
-            'https://i.scdn.co/image/fdc19ca8ffd06be7bd6b76eb1b5e6458e4831cec',
+        imageUrl: 'assets/covers/speak_now.jpeg',
         tracks: [
             { name: 'Mine', spotifyId: '0OAHsZ8vrS2NKom3cvfJQD' },
             { name: 'Sparks Fly', spotifyId: '09cM9BjyNFizKUOXh6j9rT' },
@@ -138,8 +135,7 @@ export const albums = [
         name: 'Red',
         year: 2012,
         spotifyId: '1KVKqWeRuXsJDLTW0VuD29',
-        imageUrl:
-            'https://i.scdn.co/image/42e832ea42ff849ce8a1fd67f520833a1dc5432c',
+        imageUrl: 'assets/covers/red.jpeg',
         tracks: [
             { name: 'State Of Grace', spotifyId: '0b16LTzby1YRVd2nq2Z0fw' },
             { name: 'Red', spotifyId: '7gJtmLyPTwKzhGzMBXtuXH' },
@@ -190,8 +186,7 @@ export const albums = [
         name: '1989',
         year: 2014,
         spotifyId: '1yGbNOtRIgdIiGHOEBaZWf',
-        imageUrl:
-            'https://i.scdn.co/image/8971a383560d1338f058e2c7fedea0f02a4e7047',
+        imageUrl: 'assets/covers/1989.jpeg',
         tracks: [
             {
                 name: 'Welcome To New York',
@@ -236,8 +231,7 @@ export const albums = [
         name: 'reputation',
         year: 2017,
         spotifyId: '6DEjYFkNZh67HP7R9PSZvv',
-        imageUrl:
-            'https://i.scdn.co/image/ae2edb70f5e67fc5f7f8f92b2b0f3e846699b447',
+        imageUrl: 'assets/covers/reputation.jpeg',
         tracks: [
             { name: '...Ready For It?', spotifyId: '2yLa0QULdQr0qAIvVwN6B5' },
             {
@@ -278,8 +272,7 @@ export const albums = [
         name: 'Lover',
         year: 2019,
         spotifyId: '0WGakTFs8cnggcYsHjIhgy',
-        imageUrl:
-            'https://i.scdn.co/image/e30b81b756002dffe808888a4b67461e15e67681',
+        imageUrl: 'assets/covers/lover.jpeg',
         tracks: [
             {
                 name: 'I Forgot That You Existed',
@@ -329,56 +322,49 @@ export const albums = [
                 name: 'Christmases When You Were Mine',
                 spotifyId: '1g09DZjQ7yBommCT6POY2n',
                 year: 2007,
-                imageUrl:
-                    'https://i.scdn.co/image/c03d3a1abcd2547897a426f7dd655cc4749a0dc8',
+                imageUrl: 'assets/covers/hc.jpeg',
                 albumName: 'The Taylor Swift Holiday Collection',
             },
             {
                 name: 'Christmas Must Be Something More',
                 spotifyId: '31JVjy3XWnh6C2zf4kLCXN',
                 year: 2007,
-                imageUrl:
-                    'https://i.scdn.co/image/c03d3a1abcd2547897a426f7dd655cc4749a0dc8',
+                imageUrl: 'assets/covers/hc.jpeg',
                 albumName: 'The Taylor Swift Holiday Collection',
             },
             {
                 name: 'Beautiful Eyes',
                 spotifyId: '1a5kAD0K7zijLlZokbRDe2',
                 year: 2008,
-                imageUrl:
-                    'https://i.pinimg.com/originals/05/62/a4/0562a4b806318c9c78e8abd8311fd6eb.jpg',
+                imageUrl: 'assets/covers/be.jpg',
                 albumName: 'Beautiful Eyes (EP)',
             },
             {
                 name: 'I Heart?',
                 spotifyId: '2HxTSD72RBQR31HtyX72sf',
                 year: 2008,
-                imageUrl:
-                    'https://i.pinimg.com/originals/05/62/a4/0562a4b806318c9c78e8abd8311fd6eb.jpg',
+                imageUrl: 'assets/covers/be.jpg',
                 albumName: 'Beautiful Eyes (EP)',
             },
             {
                 name: 'Crazier',
                 spotifyId: '5vyxXfD5gLlyPxGZMEjtmd',
                 year: 2009,
-                imageUrl:
-                    'https://i.scdn.co/image/684d788c7be095c1cc5e5b2778cf8682c21dbaba',
+                imageUrl: 'assets/covers/hm.jpeg',
                 albumName: 'Hannah Montana: The Movie OST',
             },
             {
                 name: 'Today Was A Fairytale',
                 spotifyId: '4pFvEWbjBpPUdYRQly0THs',
                 year: 2010,
-                imageUrl:
-                    'https://i.scdn.co/image/cfa533ec0c3649d6d039d6050d2093143d4b6107',
+                imageUrl: 'assets/covers/twaf.jpeg',
                 albumName: "Valentine's Day OST",
             },
             {
                 name: 'Safe & Sound',
                 spotifyId: '0z9UVN8VBHJ9HdfYsOuuNf',
                 year: 2011,
-                imageUrl:
-                    'https://i.scdn.co/image/af6f16d9d92c8e8ae0cb5816bf5a4c3688862e0b',
+                imageUrl: 'assets/covers/thg.jpeg',
                 albumName:
                     'The Hunger Games: Songs from District 12 and Beyond',
             },
@@ -386,8 +372,7 @@ export const albums = [
                 name: 'Eyes Open',
                 spotifyId: '7wjbSn8QHsxqKXU5M0jXGM',
                 year: 2012,
-                imageUrl:
-                    'https://i.scdn.co/image/af6f16d9d92c8e8ae0cb5816bf5a4c3688862e0b',
+                imageUrl: 'assets/covers/thg.jpeg',
                 albumName:
                     'The Hunger Games: Songs from District 12 and Beyond',
             },
@@ -395,32 +380,28 @@ export const albums = [
                 name: 'Ronan',
                 spotifyId: '0Nw8hv79MLJa1yjtsEgz08',
                 year: 2012,
-                imageUrl:
-                    'https://i.scdn.co/image/e0daec2787938bb9661c360a134e448abea68065',
+                imageUrl: 'assets/covers/ronan.jpeg',
                 albumName: 'Ronan (Single)',
             },
             {
                 name: 'Sweeter than Fiction',
                 year: 2013,
                 spotifyId: '1SpG93jxIWE2NpUstwxBPI',
-                imageUrl:
-                    'https://i.scdn.co/image/ed255bcc3259aa779085c30e15915bf9224f1f2c',
+                imageUrl: 'assets/covers/stf.jpeg',
                 albumName: 'One Chance OST',
             },
             {
                 name: "Highway Don't Care",
                 spotifyId: '60hGQrn24APqEFSLObLeDc',
                 year: 2013,
-                imageUrl:
-                    'https://i.scdn.co/image/a5b76b198e71c7069befa79488a9a9103403d824',
+                imageUrl: 'assets/covers/tlof.jpeg',
                 albumName: 'Two Lanes of Freedom',
             },
             {
                 name: "I Don't Wanna Live Forever",
                 spotifyId: '6yIdwnpDHufLWgQcveTPMk',
                 year: 2016,
-                imageUrl:
-                    'https://i.scdn.co/image/20e8df3dca5d3074d9935cdb43dc1da8491e29a3',
+                imageUrl: 'assets/covers/idwlf.jpeg',
                 albumName: 'Fifty Shades Darker OST',
             },
         ],
