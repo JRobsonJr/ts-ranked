@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ffe390f3c132f910f555d47dbac1f9e3",
+    "revision": "e6c11117dd7341a3753f531638124b8c",
     "url": "/ts-ranked/index.html"
   },
   {
-    "revision": "e9330a3766ad556c554f",
-    "url": "/ts-ranked/static/css/main.9d056f85.chunk.css"
+    "revision": "101560b069ec902d7583",
+    "url": "/ts-ranked/static/css/main.c5b17792.chunk.css"
   },
   {
-    "revision": "4e5761279e0dfd21d715",
-    "url": "/ts-ranked/static/js/2.cd8b9b10.chunk.js"
+    "revision": "f72900844b4e4f17a4c7",
+    "url": "/ts-ranked/static/js/2.9b0e4f9e.chunk.js"
   },
   {
-    "revision": "e9330a3766ad556c554f",
-    "url": "/ts-ranked/static/js/main.df43aba8.chunk.js"
+    "revision": "101560b069ec902d7583",
+    "url": "/ts-ranked/static/js/main.25faa34c.chunk.js"
   },
   {
     "revision": "8a5b3bdea06a1372b415",
@@ -44,7 +44,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ts-ranked/static/media/noah-regularitalic-webfont.c6f22776.woff"
   },
   {
-    "revision": "b7b6640d164f0cbc749a83bfce10292f",
-    "url": "/ts-ranked/static/media/taylor.b7b6640d.png"
+    "revision": "3f7277c23d4d3435c31a6b48e44bde7e",
+    "url": "/ts-ranked/static/media/taylor-lover.3f7277c2.jpeg"
+  },
+  {
+    "revision": "f141bdfe2fc8bb884ff62b3458ee1713",
+    "url": "/ts-ranked/static/media/taylor.f141bdfe.jpeg"
   }
 ]);
