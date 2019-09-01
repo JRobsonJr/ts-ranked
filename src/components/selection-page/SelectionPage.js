@@ -81,6 +81,7 @@ class SelectionPage extends Component {
                 </div>
                 <div className="col-lg-6">
                     <TrackSelectionSection
+                        albumName={itemName}
                         tracks={tracks}
                         handleClick={this.handleClick}
                     />
