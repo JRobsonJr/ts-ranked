@@ -12,6 +12,10 @@
     font-size: 1.5rem;
 }
 
+.sharing-page-ranking-lover {
+    background-image: url('../../assets/taylor-lover.jpeg');
+}
+
 .sharing-page-ranking > h4 {
     font-size: 3rem;
     font-weight: bold;

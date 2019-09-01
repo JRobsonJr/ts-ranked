@@ -63,7 +63,12 @@ class SharingPage extends Component {
 }
 
 const SharingPageRanking = ({ tracks, albumName }) => (
-    <div className="sharing-page-ranking" id="share">
+    <div
+        className={`sharing-page-ranking${
+            albumName === 'lover' ? ' sharing-page-ranking-lover' : ''
+        }`}
+        id="share"
+    >
         <h4 className="text-center text-uppercase pb-2">
             {`My top 13 ${
                 albumName === 'tracks' ? 'Taylor Swift' : albumName
