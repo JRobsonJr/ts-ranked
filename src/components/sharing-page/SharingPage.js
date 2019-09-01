@@ -51,6 +51,7 @@ class SharingPage extends Component {
                     Now it's time to share them with the world!
                 </h3>
                 <SharingPageFooter
+                    isOverallRanking={itemName === 'tracks'}
                     spotifyToken={spotifyToken}
                     spotifyUserId={spotifyUserId}
                     favoriteTrackId={tracks[0]}

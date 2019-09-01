@@ -9,25 +9,26 @@ const SharingPageFooter = ({
     favoriteTrackId,
     spotifyToken,
     spotifyUserId,
+    isOverallRanking,
 }) => {
     const { track } = getTrack(favoriteTrackId);
     const tracks = localStorage.getItem('tracks').split(',');
     const ids = tracks.map(t => t.slice(1, 3)).join('');
-
+    const spotifyButton = spotifyToken ? (
+        <SpotifyGeneratePlaylistButton
+            userId={spotifyUserId}
+            ids={localStorage.getItem('tracks').split(',')}
+        />
+    ) : (
+        <SpotifyConnectButton />
+    );
     return (
         <div className="sharing-page-footer">
             <div className="btn-group">
                 <SaveAsPngButton />
                 <ShareToTumblrButton ids={ids} favoriteTrack={track.name} />
                 <ShareToTwitterButton ids={ids} favoriteTrack={track.name} />
-                {spotifyToken ? (
-                    <SpotifyGeneratePlaylistButton
-                        userId={spotifyUserId}
-                        ids={localStorage.getItem('tracks').split(',')}
-                    />
-                ) : (
-                    <SpotifyConnectButton />
-                )}
+                {isOverallRanking && spotifyButton}
             </div>
         </div>
     );
