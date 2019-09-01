@@ -6,40 +6,51 @@ import SpotifyConnectButton from '../spotify/SpotifyConnectButton';
 import SpotifyGeneratePlaylistButton from '../spotify/SpotifyGeneratePlaylistButton';
 
 const SharingPageFooter = ({
-    favoriteTrackId,
+    albumName,
+    tracks,
     spotifyToken,
     spotifyUserId,
     isOverallRanking,
 }) => {
-    const { track } = getTrack(favoriteTrackId);
-    const tracks = localStorage.getItem('tracks').split(',');
+    const { track } = getTrack(tracks[0]);
     const ids = tracks.map(t => t.slice(1, 3)).join('');
     const spotifyButton = spotifyToken ? (
-        <SpotifyGeneratePlaylistButton
-            userId={spotifyUserId}
-            ids={localStorage.getItem('tracks').split(',')}
-        />
+        <SpotifyGeneratePlaylistButton userId={spotifyUserId} ids={tracks} />
     ) : (
         <SpotifyConnectButton />
     );
+    const resultsUrl = buildUrl(
+        'https://jrobsonjr.github.io/ts-ranked/results',
+        { tracks: ids, album: albumName !== 'tracks' ? albumName : '' }
+    );
+
     return (
         <div className="sharing-page-footer">
             <div className="btn-group">
                 <SaveAsPngButton />
-                <ShareToTumblrButton ids={ids} favoriteTrack={track.name} />
-                <ShareToTwitterButton ids={ids} favoriteTrack={track.name} />
+                <ShareToTumblrButton
+                    resultsUrl={resultsUrl}
+                    albumName={albumName}
+                    ids={ids}
+                    favoriteTrack={track.name}
+                />
+                <ShareToTwitterButton
+                    resultsUrl={resultsUrl}
+                    ids={ids}
+                    favoriteTrack={track.name}
+                />
                 {isOverallRanking && spotifyButton}
             </div>
         </div>
     );
 };
 
-const ShareToTwitterButton = ({ ids, favoriteTrack }) => {
+const ShareToTwitterButton = ({ ids, favoriteTrack, resultsUrl }) => {
     const twitterBaseUrl = 'https://twitter.com/intent/tweet';
     const twitterParams = {
         text: `@taylorswift13 has released over 100 songs throughout her career, but "${favoriteTrack}" is my favorite! Check out my Top 13 Taylor songs and create your own with TS Ranked:`,
         hashtags: 'TSRanked, TaylorSwiftRanked',
-        url: `https://jrobsonjr.github.io/ts-ranked/results?tracks=${ids}`,
+        url: resultsUrl,
     };
     return (
         <ShareToSocialMediaButton
@@ -50,14 +61,14 @@ const ShareToTwitterButton = ({ ids, favoriteTrack }) => {
     );
 };
 
-const ShareToTumblrButton = ({ ids, favoriteTrack }) => {
+const ShareToTumblrButton = ({ ids, favoriteTrack, resultsUrl }) => {
     const tumblrBaseUrl = 'https://www.tumblr.com/widgets/share/tool';
     const tumblrParams = {
-        canonicalUrl: 'https://jrobsonjr.github.io/ts-ranked',
+        canonicalUrl: resultsUrl,
         posttype: 'link',
         tags: `TSRanked, TaylorSwiftRanked, ${favoriteTrack}`,
-        content: `https://jrobsonjr.github.io/ts-ranked/results?tracks=${ids}`,
-        caption: `<a class="tumblelog" spellcheck="false">@taylorswift</a> has released over 100 songs throughout her career, but <b>${favoriteTrack}</b> is my favorite! Share your own Top 13 Taylor songs with <a href="https://jrobsonjr.github.io/ts-ranked/">TS Ranked</a>.`,
+        content: resultsUrl,
+        caption: `<a href="https://taylorswift.tumblr.com">@taylorswift</a> has released over 100 songs throughout her career, but <b>${favoriteTrack}</b> is my favorite! Share your own Top 13 Taylor songs with <a href="${resultsUrl}">TS Ranked</a>.`,
     };
 
     return (
@@ -94,14 +105,20 @@ const buildUrl = (baseUrl, params) => {
     return `${baseUrl}?${encodeQueryParams(params)}`;
 };
 
-const encodeQueryParams = params =>
-    Object.keys(params)
-        .map(
-            param =>
-                `${encodeURIComponent(param)}=${encodeURIComponent(
-                    params[param]
-                )}`
-        )
+const encodeQueryParams = params => {
+    const encodeParam = param => {
+        if (params[param]) {
+            return `${encodeURIComponent(param)}=${encodeURIComponent(
+                params[param]
+            )}`;
+        } else {
+            return '';
+        }
+    };
+    return Object.keys(params)
+        .map(param => encodeParam(param))
+        .filter(param => param !== '')
         .join('&');
+};
 
 export default SharingPageFooter;
