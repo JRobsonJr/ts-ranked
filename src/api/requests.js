@@ -7,18 +7,13 @@ const axiosInstance = axios.create({
             : 'https://ts-ranked-server.jrobsonjr.now.sh/api',
 });
 
-export const getTrackStats = () =>
-    axiosInstance.get('/tracks').then(response => response.data);
+export const getOverallScores = () =>
+    axiosInstance.get('/scores').then(response => response.data);
 
-export const addTrackScore = (trackId, score) =>
+export const getLoverScores = () =>
+    axiosInstance.get('/scores-lover').then(response => response.data);
+
+export const postRanking = (tracks, albumName) =>
     axiosInstance
-        .put('/tracks', { id: trackId, score })
+        .post('/rankings', { scope: albumName, tracks })
         .then(response => response.data);
-
-export const addTrack = trackId =>
-    axiosInstance
-        .post('/tracks', { id: trackId })
-        .then(response => response.data);
-
-export const incrementUses = () =>
-    axiosInstance.put('/users').then(response => response.data);

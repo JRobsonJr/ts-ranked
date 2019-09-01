@@ -34,9 +34,7 @@ const OverallTrackSelectionSection = ({ tracks, handleClick }) => (
 
 const LoverTracksSelectionSection = ({ album, tracks, handleClick }) => (
     <div className="selection-page-section container shadow p-4 rounded-lg">
-        <h3>
-            Click a song title to add it to your 13 favorite Lover songs.
-        </h3>
+        <h3>Click a song title to add it to your 13 favorite Lover songs.</h3>
         <div className="card album-card">
             <div className="card-header collapse-btn p-0">
                 <button className="btn btn-block text-left p-3" type="button">

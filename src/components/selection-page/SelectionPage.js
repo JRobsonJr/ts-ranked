@@ -5,7 +5,7 @@ import SelectedTracksSection from './SelectedTracksSection';
 import SelectionPageFooter from './SelectionPageFooter';
 import TrackSelectionSection from './TrackSelectionSection';
 
-import { addTrackScore, incrementUses } from '../../api/requests';
+import { postRanking } from '../../api/requests';
 
 import './SelectionPage.css';
 
@@ -20,20 +20,21 @@ class SelectionPage extends Component {
         this.state = {
             itemName,
             tracks,
+            contributed: localStorage.getItem('contributed')
+                ? localStorage.getItem('contributed')
+                : '',
         };
     }
 
     submitRanking = async () => {
-        const { contributed, tracks } = this.state;
-
-        if (!contributed) {
-            this.setState({ contributed: true });
-            localStorage.setItem('contributed', 'true');
-            await incrementUses();
-            return tracks.reduce(async (previousPromise, current, index) => {
-                await previousPromise;
-                return addTrackScore(current, 13 - index);
-            }, Promise.resolve());
+        const { itemName, contributed, tracks } = this.state;
+        if (!contributed || !contributed.includes(itemName)) {
+            this.setState({ contributed: contributed.concat(`, ${itemName}`) });
+            localStorage.setItem(
+                'contributed',
+                contributed.concat(`, ${itemName}`)
+            );
+            postRanking(tracks, itemName).then(res => console.log(res));
         }
     };
 
@@ -94,6 +95,7 @@ class SelectionPage extends Component {
                     />
                 </div>
                 <SelectionPageFooter
+                    submitRanking={this.submitRanking}
                     tracksLength={tracks.length}
                     albumName={itemName === 'tracks' ? '' : itemName}
                 />

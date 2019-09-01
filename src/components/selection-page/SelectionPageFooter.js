@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SelectionPageFooter = ({ albumName, tracksLength }) => {
+const SelectionPageFooter = ({ albumName, tracksLength, submitRanking }) => {
     const redirectParams = {
         pathname: 'share',
         search: albumName ? `?album=${albumName}` : '',
@@ -19,6 +19,7 @@ const SelectionPageFooter = ({ albumName, tracksLength }) => {
                     {tracksLength === 13 ? (
                         <div className="col-lg-auto align-self-center">
                             <Link
+                                onClick={() => submitRanking()}
                                 className="btn btn-footer"
                                 to={redirectParams}
                             >
