@@ -4,12 +4,14 @@ import { getTrack } from '../../api/albums';
 
 import './RankingPageTrackList.css';
 
-const RankingPageTrackList = ({ tracks }) => {
-    const filteredTracks = tracks
-        .filter(track => track.total > 0)
-        .sort((a, b) => b.total - a.total);
-    const tableRows = filteredTracks.map((track, index) => (
-        <TrackListTableRow trackId={track.id} index={index} />
+const RankingPageTrackList = ({ tracks, isAlbumRanking }) => {
+    const sortedTracks = tracks.sort((a, b) => b.score - a.score);
+    const tableRows = sortedTracks.map((track, index) => (
+        <TrackListTableRow
+            trackId={track.trackId}
+            index={index}
+            isAlbumRanking={isAlbumRanking}
+        />
     ));
 
     return (
@@ -18,7 +20,7 @@ const RankingPageTrackList = ({ tracks }) => {
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">TITLE</th>
-                    <th scope="col">ALBUM</th>
+                    {!isAlbumRanking && <th scope="col">ALBUM</th>}
                 </tr>
             </thead>
             <tbody>{tableRows}</tbody>
@@ -26,7 +28,7 @@ const RankingPageTrackList = ({ tracks }) => {
     );
 };
 
-const TrackListTableRow = ({ trackId, index }) => {
+const TrackListTableRow = ({ trackId, index, isAlbumRanking }) => {
     const { track, album } = getTrack(trackId);
     const albumName = track.albumName ? track.albumName : album.name;
     const albumImage = album.imageUrl || track.imageUrl || '';
@@ -43,9 +45,11 @@ const TrackListTableRow = ({ trackId, index }) => {
                 />
                 {track.name}
             </td>
-            <td>
-                <i>{albumName}</i>
-            </td>
+            {!isAlbumRanking && (
+                <td>
+                    <i>{albumName}</i>
+                </td>
+            )}
         </tr>
     );
 };

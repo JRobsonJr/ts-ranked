@@ -1,21 +1,42 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import queryString from 'querystring';
 
-import AlbumAccordion from './AlbumAccordion';
+import SelectedTracksSection from './SelectedTracksSection';
+import SelectionPageFooter from './SelectionPageFooter';
+import TrackSelectionSection from './TrackSelectionSection';
 
-import { albums } from '../../api/albums';
+import { postRanking } from '../../api/requests';
 
 import './SelectionPage.css';
 
 class SelectionPage extends Component {
     constructor(props) {
         super(props);
+        const albumName = queryString.parse(props.location.search)['?album'];
+        const itemName = albumName ? albumName : 'tracks';
+        const tracks = localStorage.getItem(itemName)
+            ? localStorage.getItem(itemName).split(',')
+            : [];
         this.state = {
-            tracks: localStorage.getItem('tracks')
-                ? localStorage.getItem('tracks').split(',')
-                : [],
+            itemName,
+            tracks,
+            contributed: localStorage.getItem('contributed')
+                ? localStorage.getItem('contributed')
+                : '',
         };
     }
+
+    submitRanking = async () => {
+        const { itemName, contributed, tracks } = this.state;
+        if (!contributed || !contributed.includes(itemName)) {
+            this.setState({ contributed: contributed.concat(`, ${itemName}`) });
+            localStorage.setItem(
+                'contributed',
+                contributed.concat(`, ${itemName}`)
+            );
+            postRanking(tracks, itemName).then(res => console.log(res));
+        }
+    };
 
     handleClick = id => {
         this.setState(prevState => {
@@ -25,51 +46,62 @@ class SelectionPage extends Component {
             } else {
                 tracks.push(id);
             }
-            localStorage.setItem('tracks', tracks.join(','));
+            localStorage.setItem(prevState.itemName, tracks.join(','));
             return { tracks };
         });
     };
 
-    render(props) {
-        const { tracks } = this.state;
+    moveTrack = (index, direction) => {
+        const { tracks, itemName } = this.state;
+        const auxIndex = direction === 'up' ? index - 1 : index + 1;
+        const aux = tracks[auxIndex];
+        tracks[auxIndex] = tracks[index];
+        tracks[index] = aux;
+        localStorage.setItem(itemName, tracks.join(','));
+        this.setState({ tracks });
+    };
+
+    removeTrack = index => {
+        this.setState(prevState => {
+            let tracks = prevState.tracks;
+            tracks.splice(index, 1);
+            localStorage.setItem(prevState.itemName, tracks.join(','));
+            return { tracks };
+        });
+    };
+
+    render() {
+        const { tracks, itemName } = this.state;
 
         return (
-            <div className="container selection-page shadow p-4 rounded-lg">
-                <h2>Select your 13 favorite Taylor Swift songs.</h2>
-                <p>
-                    Don't bother selecting in order; you'll organize them in the
-                    next step.
-                </p>
-                <AlbumAccordion
-                    albums={albums}
-                    handleClick={this.handleClick}
-                    selectedTracks={tracks}
+            <div className="selection-page row">
+                <div className="col-12">
+                    <h1 className="selection-page-title text-center px-2 py-4">
+                        Select your 13 favorite songs
+                    </h1>
+                </div>
+                <div className="col-lg-6">
+                    <TrackSelectionSection
+                        albumName={itemName}
+                        tracks={tracks}
+                        handleClick={this.handleClick}
+                    />
+                </div>
+                <div className="col-lg-6">
+                    <SelectedTracksSection
+                        tracks={tracks}
+                        removeTrack={this.removeTrack}
+                        moveTrack={this.moveTrack}
+                    />
+                </div>
+                <SelectionPageFooter
+                    submitRanking={this.submitRanking}
+                    tracksLength={tracks.length}
+                    albumName={itemName === 'tracks' ? '' : itemName}
                 />
-                <Footer tracksLength={tracks.length} />
             </div>
         );
     }
 }
-
-const Footer = ({ tracksLength }) => (
-    <div className="footer fixed-bottom shadow-lg">
-        <div className="container">
-            <div className="row p-3 justify-content-between text-center">
-                <div className="col-lg-auto align-self-center">
-                    <h6 className="mb-0 selected-tracks">
-                        Selected {tracksLength}/13 track(s)
-                    </h6>
-                </div>
-                <div className="col-lg-auto align-self-center">
-                    {tracksLength === 13 ? (
-                        <Link className="btn btn-footer" to="/order">
-                            PROCEED!
-                        </Link>
-                    ) : null}
-                </div>
-            </div>
-        </div>
-    </div>
-);
 
 export default SelectionPage;

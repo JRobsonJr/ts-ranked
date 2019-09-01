@@ -7,9 +7,52 @@ const HomePage = () => (
     <div className="mx-1">
         <MainSection />
         <StartSection />
+        <LoverSection />
         <AboutSection />
         <RestrictionsSection />
         <ContactSection />
+    </div>
+);
+
+const LoverSection = () => (
+    <div className="container container-home text-center">
+        <div className="row">
+            <div className="col-md-6 align-self-center">
+                <img
+                    src="https://i.scdn.co/image/e30b81b756002dffe808888a4b67461e15e67681"
+                    className="ranking-example pl-3 py-3"
+                    alt="Lover"
+                />
+            </div>
+            <div className="col-md-6 align-self-center">
+                <h1 className="display-5">
+                    And there's also the healthier option: <i>Lover</i> is out
+                    now!
+                </h1>
+                <h3>
+                    Taylor's seventh studio album is also her most critically
+                    acclaimed body of work up to date.
+                </h3>
+                <h5>
+                    Can you choose your favorite <b>13</b> Lover songs?
+                </h5>
+                <h5>The good ones never wait, so...</h5>
+                <div className="btn-group mr-2" role="group">
+                    <Link
+                        className="btn btn-lg btn-outline-dark badge-pill"
+                        to="/select?album=lover"
+                    >
+                        START NOW
+                    </Link>
+                    <a
+                        className="btn btn-lg btn-outline-dark badge-pill"
+                        href="https://taylorswift.lnk.to/loverWe"
+                    >
+                        STREAM LOVER
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 );
 
@@ -17,8 +60,8 @@ const MainSection = () => (
     <div className="container container-home text-center">
         <h1 className="display-2">Taylor Swift Ranked</h1>
         <h3>
-            Singer-songwriter Taylor Swift has released six studio albums and a
-            handful of singles over the course of her career.
+            Singer-songwriter Taylor Swift has released seven studio albums and
+            a handful of singles throughout her career.
         </h3>
         <h5>
             Can you choose your favorite <b>13</b> songs out of her discography?
@@ -32,19 +75,34 @@ const AboutSection = () => (
             <div className="col-lg-6">
                 <h1 className="display-4">And that's how it works...</h1>
                 <h4>
-                    It's pretty simple: select 13 songs and, in the next step,
-                    reorder them from favorite to least favorite. In the end,
-                    you'll be able to generate a cool image you can use to share
-                    on social media. Here's an example of how it should look
-                    like: my own ranking!
+                    It's pretty simple: select 13 songs and reorder them from
+                    favorite to least favorite. In the end, you'll be able to
+                    generate a cool image you can use to share on social media
+                    and to save your Top 13 as a Spotify playlist. Here's an
+                    example of how it should look like: my ranking!
                 </h4>
                 <h5>
-                    If you share this on Twitter, use the hashtag{' '}
-                    <b>#TaylorSwiftRanked</b> so that I can check your ranking!
+                    If you share yours on Twitter, Tumblr or other social media,
+                    use the hashtag <b>#TaylorSwiftRanked</b> so that I can
+                    check it out!{' '}
+                    <a
+                        href="https://breathedintheinvisiblesmoke.tumblr.com/post/187426700075/taylor-swift-ranked"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                    >
+                        Here's mine posted on Tumblr!
+                    </a>
                 </h5>
                 <h5>
-                    After you confirm your ranking, your data will be sent to 
-                    an overall ranking made with all submissions. Let's see how your favorite
+                    After you finish your Top 13, it will be sent to an{' '}
+                    <Link
+                        to="/ranking"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                    >
+                        overall ranking
+                    </Link>{' '}
+                    made with all submissions. Let's see how your favorite
                     tracks compare to other people's favorites!
                 </h5>
             </div>
@@ -67,9 +125,9 @@ const RestrictionsSection = () => (
         <h5>
             Note that only tracks that were officially released by Taylor are
             listed. Another little restriction was to only include songs in
-            which she was credited as a main artist. The last one is that all of
-            her officially released covers are not listed (except for{' '}
-            <i>Untouchable</i>, since she earned a writing credit for it).
+            which she was credited as one of the writers, being the reason why
+            all of her officially released covers are not listed (except for{' '}
+            <i>Untouchable</i> since she earned a writing credit for it).
         </h5>
     </section>
 );
@@ -80,8 +138,8 @@ const ContactSection = () => (
         <div className="row">
             <div className="col-lg-7">
                 <h5>
-                    As a fellow Swiftie, find me at <b>Twitter</b>. Hey, let's
-                    be friends!
+                    As a fellow Swiftie, find me on <b>Twitter</b> or{' '}
+                    <b>Tumblr</b>. Hey, let's be friends!
                 </h5>
                 <h5>
                     As a developer, you can find me on <b>GitHub</b>. If you
@@ -92,6 +150,10 @@ const ContactSection = () => (
                 <SocialMediaButton
                     text="Twitter (@SoftCircuits)"
                     href="https://twitter.com/SoftCircuits"
+                />
+                <SocialMediaButton
+                    text="Tumblr (@breathedintheinvisiblesmoke)"
+                    href="https://breathedintheinvisiblesmoke.tumblr.com"
                 />
                 <SocialMediaButton
                     text="GitHub (/JRobsonJr)"

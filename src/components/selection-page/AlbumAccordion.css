@@ -1,6 +1,14 @@
+.album-card {
+    background-color: transparent;
+    border: none;
+    padding-bottom: .5rem;
+}
+
 .card-header {
+    border: none;
     padding-left: 0;
     padding-right: 0;
+    border-radius: .25rem !important;
 }
 
 .list-group-item {
@@ -8,10 +16,10 @@
 }
 
 .selected-track, .selected-track:focus {
-    background: #ddf0f2;
+    background: #cbbee210;
 }
 
 .collapse-btn {
-    background: #fae3d9;
+    background: #cbbee2;
     color: black;
 }

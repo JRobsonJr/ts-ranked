@@ -19,8 +19,11 @@ const AlbumAccordion = ({ albums, handleClick, selectedTracks }) => {
 };
 
 const AlbumCard = ({ album, handleClick, selectedTracks }) => (
-    <div className="card">
-        <div className="card-header collapse-btn" id={`heading-${album.id}`}>
+    <div className="card album-card">
+        <div
+            className="card-header collapse-btn p-0"
+            id={`heading-${album.spotifyId}`}
+        >
             <AlbumCardCollapseButton album={album} />
         </div>
         <AlbumCardTrackList
@@ -33,12 +36,12 @@ const AlbumCard = ({ album, handleClick, selectedTracks }) => (
 
 const AlbumCardCollapseButton = ({ album }) => (
     <button
-        className="btn btn-block text-left"
+        className="btn btn-block text-left p-3"
         type="button"
         data-toggle="collapse"
-        data-target={`#collapse-${album.id}`}
+        data-target={`#collapse-${album.spotifyId}`}
         aria-expanded="true"
-        aria-controls={`collapse-${album.id}`}
+        aria-controls={`collapse-${album.spotifyId}`}
     >
         <b>{album.name}</b> {album.year ? `(${album.year})` : ''}{' '}
         <span className="float-right">
@@ -47,20 +50,25 @@ const AlbumCardCollapseButton = ({ album }) => (
     </button>
 );
 
-const AlbumCardTrackList = ({ album, handleClick, selectedTracks }) => {
+export const AlbumCardTrackList = ({
+    album,
+    handleClick,
+    selectedTracks,
+    collapse = true,
+}) => {
     const trackListItems = album.tracks.map(track => (
         <AlbumCardTrackListItem
             track={track}
-            selected={selectedTracks.includes(track.id)}
+            selected={selectedTracks.includes(track.spotifyId)}
             handleClick={handleClick}
         />
     ));
 
     return (
         <div
-            id={`collapse-${album.id}`}
-            className="collapse"
-            aria-labelledby={`heading-${album.id}`}
+            id={`collapse-${album.spotifyId}`}
+            className={collapse ? 'collapse' : ''}
+            aria-labelledby={`heading-${album.spotifyId}`}
             data-parent="#album-accordion"
         >
             <div className="list-group list-group-flush">{trackListItems}</div>
@@ -74,7 +82,7 @@ const AlbumCardTrackListItem = ({ track, selected, handleClick }) => (
         className={`list-group-item list-group-item-action ${
             selected ? 'selected-track' : ''
         }`}
-        onClick={() => handleClick(track.id)}
+        onClick={() => handleClick(track.spotifyId)}
     >
         {track.name}
         <span className="float-right">

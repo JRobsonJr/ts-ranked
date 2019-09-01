@@ -1,0 +1,29 @@
+.sharing-page-ranking {
+    background-image: url('../../assets/taylor.jpeg');
+    background-size: cover;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    padding: 1.5rem;
+    position: absolute;
+    left: -9999px;
+    width: 1000px;
+    font-family: noah;
+    font-size: 1.5rem;
+}
+
+.sharing-page-ranking-lover {
+    background-image: url('../../assets/taylor-lover.jpeg');
+}
+
+.sharing-page-ranking > h4 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.sharing-page-footer {
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}

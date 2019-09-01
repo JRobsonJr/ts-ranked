@@ -1,0 +1,11 @@
+.table-tracks {
+    border: 10px solid #fbbcbe10;
+}
+
+.table-striped tr:nth-of-type(odd) {
+    background-color: #f8f9fa30 !important;
+}
+
+.table-striped tr:nth-of-type(even) {
+    background-color: #fbbcbe10 !important;
+}
