@@ -47,9 +47,7 @@ class SharingPage extends Component {
                 </h1>
                 <SharingPageRanking tracks={tracks} albumName={itemName} />
                 <TrackListTable tracks={tracks} />
-                <h3 className="text-center">
-                    Now it's time to share them with the world!
-                </h3>
+                <hr />
                 <SharingPageFooter
                     albumName={itemName}
                     tracks={tracks}

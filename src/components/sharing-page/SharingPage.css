@@ -21,7 +21,6 @@
     display: flex;
     -ms-flex-align: center;
     align-items: center;
-    -ms-flex-pack: end;
-    justify-content: flex-end;
-    padding: 1rem;
+    -ms-flex-pack: center;
+    justify-content: center;
 }

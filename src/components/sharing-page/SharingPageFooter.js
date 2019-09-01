@@ -26,20 +26,28 @@ const SharingPageFooter = ({
 
     return (
         <div className="sharing-page-footer">
-            <div className="btn-group">
-                <SaveAsPngButton />
-                <ShareToTumblrButton
-                    resultsUrl={resultsUrl}
-                    albumName={albumName}
-                    ids={ids}
-                    favoriteTrack={track.name}
-                />
-                <ShareToTwitterButton
-                    resultsUrl={resultsUrl}
-                    ids={ids}
-                    favoriteTrack={track.name}
-                />
-                {isOverallRanking && spotifyButton}
+            <div className="row">
+                <div className="col-auto mb-1">
+                    <SaveAsPngButton />
+                </div>
+                <div className="col-auto mb-1">
+                    <ShareToTumblrButton
+                        resultsUrl={resultsUrl}
+                        albumName={albumName}
+                        ids={ids}
+                        favoriteTrack={track.name}
+                    />
+                </div>
+                <div className="col-auto mb-1">
+                    <ShareToTwitterButton
+                        resultsUrl={resultsUrl}
+                        ids={ids}
+                        favoriteTrack={track.name}
+                    />
+                </div>
+                <div className="col-auto mb-1">
+                    {isOverallRanking && spotifyButton}
+                </div>
             </div>
         </div>
     );
