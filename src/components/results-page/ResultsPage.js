@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import queryString from 'querystring';
 
 import PageWrapper from '../common/PageWrapper';
@@ -33,12 +34,12 @@ class ResultsPage extends Component {
                 <div className="row justify-content-center">
                     <div className="col-lg-8 col-md-10 col-sm-12">
                         <TrackListTable tracks={tracks} />
-                        <a
+                        <Link
                             className="btn btn-block btn-outline-primary"
-                            href={`/${itemName}`}
+                            to="/"
                         >
                             Generate your own Top 13 with TS Ranked!
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </PageWrapper>

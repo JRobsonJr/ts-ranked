@@ -42,7 +42,7 @@ const LoverSection = () => (
                         className="btn btn-lg btn-outline-dark badge-pill"
                         to="/select?album=lover"
                     >
-                        Start Now!
+                        START NOW
                     </Link>
                     <a
                         className="btn btn-lg btn-outline-dark badge-pill"
@@ -77,8 +77,9 @@ const AboutSection = () => (
                 <h4>
                     It's pretty simple: select 13 songs and reorder them from
                     favorite to least favorite. In the end, you'll be able to
-                    generate a cool image you can use to share on social media.
-                    Here's an example of how it should look like: my ranking!
+                    generate a cool image you can use to share on social media
+                    and to save your Top 13 as a Spotify playlist. Here's an
+                    example of how it should look like: my ranking!
                 </h4>
                 <h5>
                     If you share yours on Twitter, Tumblr or other social media,
@@ -94,13 +95,13 @@ const AboutSection = () => (
                 </h5>
                 <h5>
                     After you finish your Top 13, it will be sent to an{' '}
-                    <a
-                        href="/ranking"
+                    <Link
+                        to="/ranking"
                         rel="noopener noreferrer"
                         target="_blank"
                     >
                         overall ranking
-                    </a>{' '}
+                    </Link>{' '}
                     made with all submissions. Let's see how your favorite
                     tracks compare to other people's favorites!
                 </h5>
@@ -170,7 +171,7 @@ const SocialMediaButton = ({ text, href }) => (
         rel="noopener noreferrer"
         href={href}
     >
-        {text}
+        {text}a
     </a>
 );
 

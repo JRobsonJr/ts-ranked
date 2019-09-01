@@ -9,7 +9,9 @@ const SpotifyGeneratePlaylistButton = ({ userId, ids }) => {
         });
         return addTracksToPlaylist(
             newPlaylist.id,
-            ids.map(i => `spotify:track:${i}`)
+            ids
+                .filter(id => id !== 'unavailable')
+                .map(i => `spotify:track:${i}`)
         );
     };
 
