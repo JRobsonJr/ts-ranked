@@ -7,8 +7,6 @@ import TrackListTable from '../common/TrackListTable';
 import PageWrapper from '../common/PageWrapper';
 import SharingPageFooter from './SharingPageFooter';
 
-import { postRankingToImgur } from '../../api/images';
-
 import './SharingPage.css';
 
 class SharingPage extends Component {
@@ -25,7 +23,6 @@ class SharingPage extends Component {
             spotifyToken: this.props.location.state
                 ? this.props.location.state.token
                 : '',
-            imgurUrl: '',
         };
     }
 
@@ -38,22 +35,24 @@ class SharingPage extends Component {
                 this.setState({ spotifyUserId: user.id });
             });
         }
-        postRankingToImgur(document.getElementById('share')).then(imgurUrl =>
-            this.setState({ imgurUrl })
-        );
     }
 
     render() {
-        const { tracks, spotifyToken, imgurUrl, spotifyUserId } = this.state;
+        const { itemName, tracks, spotifyToken, spotifyUserId } = this.state;
 
         return tracks.length === 13 ? (
             <PageWrapper>
-                <SharingPageRanking tracks={tracks} />
+                <h1 className="text-center">
+                    Here are your top 13 Taylor Swift tracks!
+                </h1>
+                <SharingPageRanking tracks={tracks} albumName={itemName} />
                 <TrackListTable tracks={tracks} />
+                <h3 className="text-center">
+                    Now it's time to share them with the world!
+                </h3>
                 <SharingPageFooter
                     spotifyToken={spotifyToken}
                     spotifyUserId={spotifyUserId}
-                    imgurUrl={imgurUrl}
                     favoriteTrackId={tracks[0]}
                 />
             </PageWrapper>
@@ -63,10 +62,17 @@ class SharingPage extends Component {
     }
 }
 
-const SharingPageRanking = ({ tracks }) => (
+const SharingPageRanking = ({ tracks, albumName }) => (
     <div className="sharing-page-ranking" id="share">
-        <h4 className="text-center pb-2">MY TOP 13 TAYLOR SWIFT SONGS</h4>
-        <TrackListTable tracks={tracks} />
+        <h4 className="text-center text-uppercase pb-2">
+            {`My top 13 ${
+                albumName === 'tracks' ? 'Taylor Swift' : albumName
+            } songs`}
+        </h4>
+        <TrackListTable
+            isAlbumRanking={albumName !== 'tracks'}
+            tracks={tracks}
+        />
         <p className="text-right">
             <b>#TSRANKED</b>
         </p>

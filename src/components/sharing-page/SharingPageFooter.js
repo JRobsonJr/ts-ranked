@@ -9,7 +9,6 @@ const SharingPageFooter = ({
     favoriteTrackId,
     spotifyToken,
     spotifyUserId,
-    imgurUrl,
 }) => {
     const { track } = getTrack(favoriteTrackId);
     const tracks = localStorage.getItem('tracks').split(',');
@@ -19,10 +18,7 @@ const SharingPageFooter = ({
         <div className="sharing-page-footer">
             <div className="btn-group">
                 <SaveAsPngButton />
-                <ShareToTumblrButton
-                    imageUrl={imgurUrl}
-                    favoriteTrack={track.name}
-                />
+                <ShareToTumblrButton ids={ids} favoriteTrack={track.name} />
                 <ShareToTwitterButton ids={ids} favoriteTrack={track.name} />
                 {spotifyToken ? (
                     <SpotifyGeneratePlaylistButton
@@ -37,23 +33,11 @@ const SharingPageFooter = ({
     );
 };
 
-const LoadingButton = () => (
-    <button className="btn btn-primary" type="button" disabled>
-        <span
-            className="spinner-border spinner-border-sm"
-            role="status"
-            aria-hidden="true"
-        />{' '}
-        Loading...
-    </button>
-);
-
 const ShareToTwitterButton = ({ ids, favoriteTrack }) => {
     const twitterBaseUrl = 'https://twitter.com/intent/tweet';
     const twitterParams = {
-        text: `Taylor Swift has released over 100 songs throughout her career, but ${favoriteTrack} is my favorite! Share your own Top 13 Taylor songs using TS Ranked:`,
-        hashtags: 'TaylorSwiftRanked',
-        via: 'SoftCircuits',
+        text: `@taylorswift13 has released over 100 songs throughout her career, but "${favoriteTrack}" is my favorite! Check out my Top 13 Taylor songs and create your own with TS Ranked:`,
+        hashtags: 'TSRanked, TaylorSwiftRanked',
         url: `https://jrobsonjr.github.io/ts-ranked/results?tracks=${ids}`,
     };
     return (
@@ -65,27 +49,23 @@ const ShareToTwitterButton = ({ ids, favoriteTrack }) => {
     );
 };
 
-const ShareToTumblrButton = ({ favoriteTrack, imageUrl }) => {
+const ShareToTumblrButton = ({ ids, favoriteTrack }) => {
     const tumblrBaseUrl = 'https://www.tumblr.com/widgets/share/tool';
     const tumblrParams = {
         canonicalUrl: 'https://jrobsonjr.github.io/ts-ranked',
-        posttype: 'photo',
-        tags: `TaylorSwiftRanked, ${favoriteTrack}`,
-        content: imageUrl,
-        caption: `Taylor Swift has released over 100 songs over the course of her career, but ${favoriteTrack} is my favorite! Share your own Top 13 Taylor songs using TS Ranked.`,
+        posttype: 'link',
+        tags: `TSRanked, TaylorSwiftRanked, ${favoriteTrack}`,
+        content: `https://jrobsonjr.github.io/ts-ranked/results?tracks=${ids}`,
+        caption: `<a class="tumblelog" spellcheck="false">@taylorswift</a> has released over 100 songs throughout her career, but <b>${favoriteTrack}</b> is my favorite! Share your own Top 13 Taylor songs with <a href="https://jrobsonjr.github.io/ts-ranked/">TS Ranked</a>.`,
     };
 
-    if (imageUrl) {
-        return (
-            <ShareToSocialMediaButton
-                baseUrl={tumblrBaseUrl}
-                params={tumblrParams}
-                name="Tumblr"
-            />
-        );
-    } else {
-        return <LoadingButton />;
-    }
+    return (
+        <ShareToSocialMediaButton
+            baseUrl={tumblrBaseUrl}
+            params={tumblrParams}
+            name="Tumblr"
+        />
+    );
 };
 
 const SaveAsPngButton = () => (
