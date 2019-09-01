@@ -75,10 +75,11 @@ const SharingPageRanking = ({ tracks, albumName }) => (
             } songs`}
         </h4>
         <TrackListTable
+            isSharingPage
             isAlbumRanking={albumName !== 'tracks'}
             tracks={tracks}
         />
-        <p className="text-right">
+        <p className="text-right mb-0">
             <b>#TSRANKED</b>
         </p>
     </div>

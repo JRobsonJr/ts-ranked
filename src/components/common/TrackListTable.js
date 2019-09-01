@@ -4,7 +4,7 @@ import { getTrack } from '../../api/albums';
 
 import './TrackListTable.css';
 
-const TrackListTable = ({ tracks, isAlbumRanking }) => {
+const TrackListTable = ({ tracks, isAlbumRanking, isSharingPage }) => {
     const tableRows = tracks.map((track, index) => (
         <TrackListTableRow
             id={track}
@@ -14,7 +14,11 @@ const TrackListTable = ({ tracks, isAlbumRanking }) => {
     ));
 
     return (
-        <table className="table table-striped table-borderless table-tracks table-responsive">
+        <table
+            className={`table table-striped table-borderless table-tracks${
+                isSharingPage ? '' : ' table-responsive'
+            }`}
+        >
             <tbody>{tableRows}</tbody>
         </table>
     );
