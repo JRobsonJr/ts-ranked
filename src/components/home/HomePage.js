@@ -86,7 +86,7 @@ const AboutSection = () => (
                     use the hashtag <b>#TaylorSwiftRanked</b> so that I can
                     check it out!{' '}
                     <a
-                        href="https://breathedintheinvisiblesmoke.tumblr.com"
+                        href="https://breathedintheinvisiblesmoke.tumblr.com/post/187426700075/taylor-swift-ranked"
                         rel="noopener noreferrer"
                         target="_blank"
                     >
@@ -171,7 +171,7 @@ const SocialMediaButton = ({ text, href }) => (
         rel="noopener noreferrer"
         href={href}
     >
-        {text}a
+        {text}
     </a>
 );
 
