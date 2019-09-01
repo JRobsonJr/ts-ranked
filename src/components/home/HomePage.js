@@ -38,12 +38,12 @@ const LoverSection = () => (
                 </h5>
                 <h5>The good ones never wait, so...</h5>
                 <div className="btn-group mr-2" role="group">
-                    <a
+                    <Link
                         className="btn btn-lg btn-outline-dark badge-pill"
-                        href="/select?album=lover"
+                        to="/select?album=lover"
                     >
-                        START NOW!
-                    </a>
+                        Start Now!
+                    </Link>
                     <a
                         className="btn btn-lg btn-outline-dark badge-pill"
                         href="https://taylorswift.lnk.to/loverWe"
