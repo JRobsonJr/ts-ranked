@@ -20,7 +20,7 @@ const SharingPageFooter = ({
         <SpotifyConnectButton />
     );
     const resultsUrl = buildUrl(
-        'https://jrobsonjr.github.io/ts-ranked/results',
+        'https://jrobsonjr.github.io/ts-ranked/?p=/results',
         { tracks: ids, album: albumName !== 'tracks' ? albumName : '' }
     );
 
@@ -41,6 +41,7 @@ const SharingPageFooter = ({
                 <div className="col-auto mb-1">
                     <ShareToTwitterButton
                         resultsUrl={resultsUrl}
+                        albumName={albumName}
                         ids={ids}
                         favoriteTrack={track.name}
                     />
@@ -53,13 +54,23 @@ const SharingPageFooter = ({
     );
 };
 
-const ShareToTwitterButton = ({ ids, favoriteTrack, resultsUrl }) => {
+const ShareToTwitterButton = ({
+    ids,
+    favoriteTrack,
+    resultsUrl,
+    albumName,
+}) => {
     const twitterBaseUrl = 'https://twitter.com/intent/tweet';
     const twitterParams = {
-        text: `@taylorswift13 has released over 100 songs throughout her career, but "${favoriteTrack}" is my favorite! Check out my Top 13 Taylor songs and create your own with TS Ranked:`,
-        hashtags: 'TSRanked, TaylorSwiftRanked',
+        text: `.@taylorswift13 has released over 100 songs throughout her career, but "${favoriteTrack}" is my favorite! Check out my Top 13 Taylor songs and create your own with TS Ranked:`,
+        hashtags: 'TaylorSwiftRanked',
         url: resultsUrl,
     };
+
+    if (albumName === 'lover') {
+        twitterParams.text = `.@taylorswift13's highly anticipated seventh album is out now! #Lover is full of great songs, but "${favoriteTrack}" is my favorite! Check out my Top 13 Lover songs and create your own with #TSRanked:`;
+    }
+
     return (
         <ShareToSocialMediaButton
             baseUrl={twitterBaseUrl}
@@ -69,7 +80,7 @@ const ShareToTwitterButton = ({ ids, favoriteTrack, resultsUrl }) => {
     );
 };
 
-const ShareToTumblrButton = ({ ids, favoriteTrack, resultsUrl }) => {
+const ShareToTumblrButton = ({ ids, favoriteTrack, resultsUrl, albumName }) => {
     const tumblrBaseUrl = 'https://www.tumblr.com/widgets/share/tool';
     const tumblrParams = {
         canonicalUrl: resultsUrl,
@@ -78,6 +89,11 @@ const ShareToTumblrButton = ({ ids, favoriteTrack, resultsUrl }) => {
         content: resultsUrl,
         caption: `<a href="https://taylorswift.tumblr.com">@taylorswift</a> has released over 100 songs throughout her career, but <b>${favoriteTrack}</b> is my favorite! Share your own Top 13 Taylor songs with <a href="${resultsUrl}">TS Ranked</a>.`,
     };
+
+    if (albumName === 'lover') {
+        tumblrParams.tags = tumblrParams.tags.concat(', Lover');
+        tumblrParams.caption = `The highly anticipated <i>Lover</i> by <a href="https://taylorswift.tumblr.com">@taylorswift</a> is out now! Taylor's seventh studio album is packed incredible tracks, but <b>${favoriteTrack}</b> is my favorite! Check out my Top 13 Lover songs and create your own with <a href="${resultsUrl}">TS Ranked</a>.`;
+    }
 
     return (
         <ShareToSocialMediaButton
