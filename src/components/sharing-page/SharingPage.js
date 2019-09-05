@@ -45,7 +45,9 @@ class SharingPage extends Component {
                 <h1 className="text-center">
                     Here are your top 13 Taylor Swift tracks!
                 </h1>
-                <SharingPageRanking tracks={tracks} albumName={itemName} />
+                <div className="container-disappear">
+                    <SharingPageRanking tracks={tracks} albumName={itemName} />
+                </div>
                 <TrackListTable tracks={tracks} />
                 <hr />
                 <SharingPageFooter

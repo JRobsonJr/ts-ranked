@@ -9,9 +9,32 @@ const HomePage = () => (
         <StartSection />
         <LoverSection />
         <AboutSection />
+        <InspirationsSection />
         <RestrictionsSection />
         <ContactSection />
     </div>
+);
+
+const MainSection = () => (
+    <div className="container container-home text-center">
+        <h1 className="display-2">Taylor Swift Ranked</h1>
+        <h3>
+            Singer-songwriter Taylor Swift has released seven studio albums and
+            a handful of singles throughout her career.
+        </h3>
+        <h5>
+            Can you choose your favorite <b>13</b> songs out of her discography?
+        </h5>
+    </div>
+);
+
+const StartSection = () => (
+    <section className="container container-home text-center">
+        <h5>I don't think you should wait. I think you should...</h5>
+        <Link className="btn btn-lg btn-outline-dark badge-pill" to="/select">
+            START NOW!
+        </Link>
+    </section>
 );
 
 const LoverSection = () => (
@@ -53,19 +76,6 @@ const LoverSection = () => (
                 </div>
             </div>
         </div>
-    </div>
-);
-
-const MainSection = () => (
-    <div className="container container-home text-center">
-        <h1 className="display-2">Taylor Swift Ranked</h1>
-        <h3>
-            Singer-songwriter Taylor Swift has released seven studio albums and
-            a handful of singles throughout her career.
-        </h3>
-        <h5>
-            Can you choose your favorite <b>13</b> songs out of her discography?
-        </h5>
     </div>
 );
 
@@ -132,18 +142,52 @@ const RestrictionsSection = () => (
     </section>
 );
 
+const InspirationsSection = () => (
+    <section className="container container-home">
+        <h1>Inspirations</h1>
+        <h5>
+            When I came across Rob Sheffield's{' '}
+            <a
+                href="https://www.rollingstone.com/music/music-lists/all-129-of-taylor-swifts-songs-ranked-201800/"
+                rel="noopener noreferrer"
+                target="_blank"
+            >
+                "Taylor Swift's Songs: All Ranked"
+            </a>{' '}
+            article for Rolling Stone, I felt the urge to come up with my list.
+            I then realized that many other Swifties were compiling their
+            rankings and sharing them on social media — the thing is, we{' '}
+            <b>love sharing the things that we love</b>. I thought of creating
+            this project, <b>TS Ranked</b>, to allow people to generate their
+            lists and contribute to an overall ranking. Then it would be
+            possible to answer some important questions, such as: "Is{' '}
+            <i>All Too Well</i> the most loved track in Taylor's discography?",
+            "Does anyone really like <i>Bad Blood</i> enough to place the song
+            amongst their favorite tracks?" and "Am I the only one obsessed with{' '}
+            <i>Forever & Always</i>?" Since ranking all tracks is a very lengthy
+            task, I borrowed Tay's favorite number for this project.
+        </h5>
+    </section>
+);
+
 const ContactSection = () => (
     <section className="container container-home">
         <h1>Contact</h1>
         <div className="row">
             <div className="col-lg-7">
                 <h5>
+                    Thank you for using this app! My name is Robson and I'm a 20
+                    year-old Computer Science undergraduate obsessed with music
+                    (and Taylor Swift, in case you didn't figure it out).
+                </h5>
+                <h5>
                     As a fellow Swiftie, find me on <b>Twitter</b> or{' '}
                     <b>Tumblr</b>. Hey, let's be friends!
                 </h5>
                 <h5>
                     As a developer, you can find me on <b>GitHub</b>. If you
-                    have any issues using this tool, please, contact me!
+                    have any issues using this tool or if you have any feature
+                    suggestions, please, contact me!
                 </h5>
             </div>
             <div className="col-lg-5">
@@ -173,15 +217,6 @@ const SocialMediaButton = ({ text, href }) => (
     >
         {text}
     </a>
-);
-
-const StartSection = () => (
-    <section className="container container-home text-center">
-        <h5>I don't think you should wait. I think you should...</h5>
-        <Link className="btn btn-lg btn-outline-dark badge-pill" to="/select">
-            START NOW!
-        </Link>
-    </section>
 );
 
 export default HomePage;
